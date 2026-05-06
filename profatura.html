@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Proforma Fatura</title>
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --card:#111a2b;
+      --muted:#94a3b8;
+      --text:#e5e7eb;
+      --line:#26324a;
+      --accent:#7dd3fc;
+      --danger:#fb7185;
+      --input:#0b1222;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: radial-gradient(1200px 700px at 20% -10%, #1f3b6a 0%, rgba(31,59,106,0) 60%),
+                  radial-gradient(900px 600px at 110% 10%, #2b1f6a 0%, rgba(43,31,106,0) 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+    .wrap{max-width:1200px; margin:24px auto; padding:0 16px 60px;}
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      margin-bottom:14px;
+    }
+    .brand{display:flex; flex-direction:column; gap:2px;}
+    .brand h1{margin:0; font-size:18px; letter-spacing:.3px}
+    .brand .sub{color:var(--muted); font-size:12px}
+    .actions{display:flex; gap:10px; flex-wrap:wrap;}
+    button{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, #16223a, #0f172a);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    button:hover{border-color:#3a4b6d}
+    button.primary{border-color: rgba(125,211,252,.5); box-shadow: 0 0 0 2px rgba(125,211,252,.08) inset;}
+    button.danger{border-color: rgba(251,113,133,.5);}
+    button.small{padding:7px 10px; border-radius:10px; font-weight:800; font-size:12px}
+    .card{
+      background: rgba(17,26,43,.86);
+      border:1px solid rgba(38,50,74,.9);
+      border-radius:18px;
+      padding:14px;
+      box-shadow: 0 20px 80px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+    }
+    label{display:block; font-size:12px; color:var(--muted); margin-bottom:6px}
+    input, select, textarea{
+      width:100%;
+      background: rgba(11,18,34,.9);
+      color:var(--text);
+      border:1px solid rgba(38,50,74,.95);
+      border-radius:12px;
+      padding:10px 10px;
+      outline:none;
+    }
+    input:focus, select:focus, textarea:focus{border-color: rgba(125,211,252,.65); box-shadow: 0 0 0 3px rgba(125,211,252,.10);}
+    textarea{min-height:88px; resize:vertical}
+    .muted{color:var(--muted)}
+    .headerRow{display:flex; justify-content:space-between; gap:12px; align-items:flex-start;}
+    .titleBox{display:flex; flex-direction:column; gap:6px;}
+    .titleBox .big{font-size:22px; letter-spacing:.5px; font-weight:900;}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid rgba(38,50,74,.95);
+      padding:7px 10px; border-radius:999px; color:var(--muted); font-size:12px;
+      background: rgba(11,18,34,.6);
+    }
+    .grid3{display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px;}
+    /* Alıcı büyük, satıcı küçük + yer değişimi */
+    .partyGrid{display:grid; grid-template-columns: 1.35fr .65fr; gap:14px; margin-top:14px; align-items:stretch;}
+    .box{
+      border:1px solid rgba(38,50,74,.95);
+      border-radius:16px;
+      padding:12px;
+      background: rgba(11,18,34,.55);
+    }
+
+    .tableWrap{margin-top:14px; overflow:auto; border-radius:16px; border:1px solid rgba(38,50,74,.95)}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:980px;
+      background: rgba(11,18,34,.55);
+      table-layout: fixed;
+    }
+    thead th{
+      background: rgba(15,23,42,.92);
+      color:#cbd5e1;
+      text-align:left;
+      font-size:12px;
+      padding:10px 8px;
+      border-bottom:1px solid rgba(38,50,74,.95);
+      white-space:nowrap;
+    }
+    tbody td{
+      padding:8px;
+      border-bottom:1px solid rgba(38,50,74,.55);
+      vertical-align:top;
+    }
+    tbody tr:hover{background: rgba(17,26,43,.35);}
+    .num{ text-align:right; font-variant-numeric: tabular-nums; }
+    .right{ text-align:right; }
+    .rowActions{display:flex; gap:6px; justify-content:flex-end;}
+    .hint{font-size:12px; color:var(--muted); margin-top:8px; line-height:1.35}
+    .mini{font-size:11px; color:var(--muted)}
+    .noPrint{}
+    .printOnly{display:none}
+
+    /* Ürün adı hücresindeki textarea */
+    .itemName{
+      width:100%;
+      min-height:68px;
+      resize:vertical;
+      line-height:1.25;
+      padding:8px 10px;
+    }
+
+    .totals{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    .sumRow{
+      display:flex; justify-content:space-between; gap:12px;
+      padding:7px 0;
+      border-bottom:1px dashed rgba(38,50,74,.6);
+      font-variant-numeric: tabular-nums;
+    }
+    .sumRow:last-child{border-bottom:none}
+    .sumRow strong{color:#e2e8f0}
+    .grand{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(125,211,252,.6);
+      background: linear-gradient(180deg, rgba(125,211,252,.10), rgba(125,211,252,.03));
+      display:flex; justify-content:space-between; align-items:center;
+      font-variant-numeric: tabular-nums;
+    }
+    .grand .label{font-weight:900; letter-spacing:.2px;}
+    .grand .value{font-size:18px; font-weight:900;}
+
+    /* PRINT / PDF */
+    @media print{
+      body{background:#fff; color:#000;}
+      .wrap{max-width:none; margin:0; padding:0;}
+      .topbar, .noPrint, button, .hint{display:none !important;}
+      .card{background:#fff; border:none; box-shadow:none; padding:0;}
+      input, select, textarea{
+        border:1px solid #bbb; background:#fff; color:#000;
+        padding:6px 6px; border-radius:6px;
+      }
+      textarea{resize:none;}
+      .tableWrap{border:1px solid #999; overflow:visible;}
+      table{
+        background:#fff;
+        min-width:0;
+        width:100%;
+        table-layout: fixed;
+      }
+      thead th{
+        background:#f2f2f2; color:#000; border-bottom:1px solid #aaa;
+        font-size:11pt;
+        white-space:normal;
+      }
+      tbody td{border-bottom:1px solid #ddd; font-size:11pt;}
+      .box{background:#fff; border:1px solid #aaa}
+      .grand{border:2px solid #000; background:#fff}
+      .printOnly{display:block}
+      @page{size:A4; margin:10mm;}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar noPrint">
+      <div class="brand">
+        <h1>Proforma Fatura — Web Şablon</h1>
+        <div class="sub">Barkod, uzun ürün adı (çok satır), dinamik satır, PDF (Yazdır → PDF kaydet)</div>
+      </div>
+      <div class="actions">
+        <button class="primary" id="addRowBtn">+ Satır Ekle</button>
+        <button id="pdfBtn" class="primary">PDF İndir</button>
+        <button class="danger" id="clearBtn" title="Tüm satırları temizler">Temizle</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="headerRow">
+        <div class="titleBox">
+          <div class="big">PROFORMA INVOICE / PROFORMA FATURA</div>
+          <div class="pill">
+            <span>Para Birimi</span>
+            <select id="currency" style="width:auto; padding:6px 10px; border-radius:999px;">
+              <option value="TRY" selected>TRY</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+            </select>
+            <span class="mini">(* sadece etiket)</span>
+          </div>
+        </div>
+
+        <div style="min-width:320px; max-width:420px;">
+          <div class="grid3">
+            <div>
+              <label>Proforma No</label>
+              <input id="invoiceNo" placeholder="PF-2026-0001" />
+            </div>
+            <div>
+              <label>Düzenleme Tarihi</label>
+              <input id="issueDate" type="date" />
+            </div>
+            <div>
+              <label>Vade Tarihi</label>
+              <input id="dueDate" type="date" />
+            </div>
+          </div>
+          <div class="hint noPrint">
+            “PDF İndir” butonu yazdır ekranını açar. Oradan <b>PDF olarak kaydet</b> seçerek indirirsin.
+          </div>
+          <div class="printOnly mini" style="margin-top:6px;">Bu belge tarayıcı üzerinden PDF’e dönüştürülmüştür.</div>
+        </div>
+      </div>
+
+      <!-- Yer değişti: Alıcı büyük (solda), Satıcı küçük (sağda) -->
+      <div class="partyGrid">
+        <div class="box">
+          <div class="muted" style="font-weight:900; margin-bottom:8px;">Alıcı / Buyer</div>
+          <div class="grid3">
+            <div>
+              <label>Müşteri Adı</label>
+              <input id="buyerName" placeholder="Müşteri / Company" />
+            </div>
+            <div>
+              <label>Vergi / VKN</label>
+              <input id="buyerTax" placeholder="VKN / Tax No" />
+            </div>
+            <div>
+              <label>E-posta</label>
+              <input id="buyerMail" placeholder="mail@..." />
+            </div>
+          </div>
+          <div style="margin-top:10px;">
+            <label>Adres</label>
+            <textarea id="buyerAddr" placeholder="Adres..."></textarea>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="muted" style="font-weight:900; margin-bottom:8px;">Satıcı / Seller</div>
+          <div>
+            <label>Satıcı Bilgileri</label>
+            <textarea id="sellerBlock"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="tableWrap" style="margin-top:14px;">
+        <table id="itemsTable">
+          <thead>
+            <tr>
+              <th style="width:42px;">#</th>
+              <th style="width:140px;">Barkod</th>
+              <th style="width:420px;">Ürün İsmi / Açıklama</th>
+              <th style="width:90px;" class="right">Miktar</th>
+              <th style="width:90px;">Birim</th>
+              <th style="width:120px;" class="right">Birim Fiyat</th>
+              <th style="width:90px;" class="right">KDV %</th>
+              <th style="width:140px;" class="right">Toplam (KDV Dahil)</th>
+              <th style="width:100px;" class="right noPrint">İşlem</th>
+            </tr>
+          </thead>
+          <tbody id="itemsBody"></tbody>
+        </table>
+      </div>
+
+      <div class="totals">
+        <div class="box">
+          <div class="muted" style="font-weight:900; margin-bottom:8px;">Notlar / Notes</div>
+          <textarea id="notes" placeholder="Teslim/ödeme şartları, banka bilgisi, açıklama..."></textarea>
+          <div class="hint noPrint">KDV alanına <b>20</b> gibi yaz. Sistem otomatik oran olarak hesaplar.</div>
+        </div>
+
+        <div class="box">
+          <div class="muted" style="font-weight:900; margin-bottom:8px;">Toplamlar</div>
+
+          <div class="sumRow"><span>Ara Toplam (KDV Hariç)</span><strong id="subTotal">0</strong></div>
+          <div class="sumRow"><span>KDV Toplamı</span><strong id="vatTotal">0</strong></div>
+
+          <div style="margin-top:10px;" class="grid3">
+            <div>
+              <label>Kargo / Shipping</label>
+              <input id="shipping" inputmode="decimal" placeholder="0" />
+            </div>
+            <div>
+              <label>Diğer / Other</label>
+              <input id="other" inputmode="decimal" placeholder="0" />
+            </div>
+            <div>
+              <label style="visibility:hidden;">.</label>
+              <div class="mini" id="rowCountInfo"></div>
+            </div>
+          </div>
+
+          <div class="grand">
+            <div class="label" id="grandLabel">GENEL TOPLAM (TRY)</div>
+            <div class="value" id="grandTotal">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const el = (id)=>document.getElementById(id);
+  const itemsBody = el('itemsBody');
+  const addRowBtn = el('addRowBtn');
+  const pdfBtn = el('pdfBtn');
+  const clearBtn = el('clearBtn');
+
+  const currency = el('currency');
+  const issueDate = el('issueDate');
+  const dueDate = el('dueDate');
+
+  const shipping = el('shipping');
+  const other = el('other');
+
+  const subTotalEl = el('subTotal');
+  const vatTotalEl = el('vatTotal');
+  const grandTotalEl = el('grandTotal');
+  const grandLabelEl = el('grandLabel');
+  const rowCountInfo = el('rowCountInfo');
+
+  const sellerBlock = el('sellerBlock');
+
+  function toNumber(v){
+    if(v === null || v === undefined) return 0;
+    const s = String(v).trim().replace(/\./g, '').replace(',', '.'); // 1.234,56 -> 1234.56
+    const n = parseFloat(s);
+    return Number.isFinite(n) ? n : 0;
+  }
+  function pctToRate(pct){
+    return toNumber(pct) / 100; // kullanıcı 20 girer -> 0.20
+  }
+  function money(n){
+    const c = currency.value || 'TRY';
+    try{
+      return new Intl.NumberFormat('tr-TR', { style:'currency', currency:c, maximumFractionDigits:2 }).format(n);
+    }catch{
+      return (Math.round(n*100)/100).toLocaleString('tr-TR') + ' ' + c;
+    }
+  }
+
+  function setDefaultDates(){
+    const now = new Date();
+    issueDate.value = now.toISOString().slice(0,10);
+    const due = new Date(now.getTime());
+    due.setDate(due.getDate() + 30);
+    dueDate.value = due.toISOString().slice(0,10);
+  }
+
+  function rowTemplate(idx){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="muted">${idx}</td>
+      <td><input class="barcode" placeholder="Barkod" /></td>
+      <td>
+        <textarea class="itemName" placeholder="Ürün ismi çok uzun olabilir, burası çok satır destekler"></textarea>
+      </td>
+      <td><input class="qty num" inputmode="decimal" placeholder="0" /></td>
+      <td>
+        <select class="unit">
+          <option>Adet</option>
+          <option>Kg</option>
+          <option>Gr</option>
+          <option>Metre</option>
+          <option>m²</option>
+          <option>m³</option>
+          <option>Saat</option>
+          <option>Gün</option>
+        </select>
+      </td>
+      <td><input class="price num" inputmode="decimal" placeholder="0" /></td>
+      <td><input class="vatPct num" inputmode="decimal" placeholder="20" /></td>
+      <td class="num muted total">—</td>
+      <td class="noPrint">
+        <div class="rowActions">
+          <button class="small danger del">Sil</button>
+        </div>
+      </td>
+    `;
+
+    tr.querySelectorAll('input,select,textarea').forEach(x=>{
+      x.addEventListener('input', recalc);
+      x.addEventListener('change', recalc);
+    });
+    tr.querySelector('.del').addEventListener('click', ()=>{
+      tr.remove();
+      renumberRows();
+      recalc();
+    });
+
+    return tr;
+  }
+
+  function renumberRows(){
+    [...itemsBody.querySelectorAll('tr')].forEach((tr, i)=>{
+      tr.children[0].textContent = String(i+1);
+    });
+  }
+
+  function addRow(prefill){
+    const idx = itemsBody.querySelectorAll('tr').length + 1;
+    const tr = rowTemplate(idx);
+    itemsBody.appendChild(tr);
+
+    if(prefill){
+      tr.querySelector('.barcode').value = prefill.barcode ?? '';
+      tr.querySelector('.itemName').value = prefill.name ?? '';
+      tr.querySelector('.qty').value = prefill.qty ?? '';
+      tr.querySelector('.unit').value = prefill.unit ?? 'Adet';
+      tr.querySelector('.price').value = prefill.price ?? '';
+      tr.querySelector('.vatPct').value = prefill.vatPct ?? '20';
+    }
+    recalc();
+  }
+
+  function recalc(){
+    const rows = [...itemsBody.querySelectorAll('tr')];
+
+    let netSum = 0;  // KDV hariç
+    let vatSum = 0;  // KDV
+    let grand = 0;   // KDV dahil
+
+    rows.forEach(tr=>{
+      const qty = toNumber(tr.querySelector('.qty').value);
+      const price = toNumber(tr.querySelector('.price').value);
+      const vatRate = pctToRate(tr.querySelector('.vatPct').value);
+
+      const lineNet = qty * price;
+      const lineVat = lineNet * vatRate;
+      const lineTotal = lineNet + lineVat;
+
+      netSum += lineNet;
+      vatSum += lineVat;
+      grand += lineTotal;
+
+      tr.querySelector('.total').textContent = (qty && price) ? money(lineTotal) : '—';
+    });
+
+    const ship = toNumber(shipping.value);
+    const oth = toNumber(other.value);
+
+    const grandAll = grand + ship + oth;
+
+    subTotalEl.textContent = money(netSum);
+    vatTotalEl.textContent = money(vatSum);
+
+    grandLabelEl.textContent = `GENEL TOPLAM (${currency.value})`;
+    grandTotalEl.textContent = money(grandAll);
+
+    rowCountInfo.textContent = `${rows.length} kalem`;
+  }
+
+  // events
+  addRowBtn.addEventListener('click', ()=>addRow());
+  pdfBtn.addEventListener('click', ()=>window.print());
+  clearBtn.addEventListener('click', ()=>{
+    itemsBody.innerHTML = '';
+    addRow({});
+    addRow({});
+    recalc();
+  });
+
+  currency.addEventListener('change', recalc);
+  shipping.addEventListener('input', recalc);
+  other.addEventListener('input', recalc);
+  issueDate.addEventListener('change', ()=>{
+    const d = new Date(issueDate.value);
+    if(!isNaN(d.getTime())){
+      const due = new Date(d.getTime());
+      due.setDate(due.getDate()+30);
+      dueDate.value = due.toISOString().slice(0,10);
+    }
+  });
+
+  // init
+  setDefaultDates();
+  sellerBlock.value =
+`ADAESPOR
+Cumhuriyet Mh. 504 Sk. No:14/A  Fethiye/ Muğla
+Tel: 0(555) 272 13 99
+E-Posta: adaespor@gmail.com`;
+
+  addRow({});
+  addRow({});
+  recalc();
+})();
+</script>
+</body>
+</html>
