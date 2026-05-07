@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<title>Repertuar Stage cldV3.1</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23000713'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%23fff7c7'/%3E%3Cstop offset='.52' stop-color='%23d7a843'/%3E%3Cstop offset='1' stop-color='%237a4c10'/%3E%3C/linearGradient%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='0' stdDeviation='2.2' flood-color='%23d7a843' flood-opacity='.85'/%3E%3C/filter%3E%3C/defs%3E%3Cg fill='url(%23g)' filter='url(%23s)'%3E%3Cpath d='M23 10h5v31c0 6-5 10-11 9-6-1-9-6-7-10 2-5 8-7 13-4z'/%3E%3Cpath d='M42 6h5v34c0 6-5 10-11 9-6-1-9-6-7-10 2-5 8-7 13-4z'/%3E%3Cpath d='M28 10c6 6 12 9 19 8v8c-7 1-14-2-19-7z'/%3E%3C/g%3E%3C/svg%3E"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{stage:'#000509'}}}}</script>
+<style>
+/* ═══════════════════════════════════════════
+   REPERTUAR STAGE cldV3.1 — Altın Varak Sistem
+   ═══════════════════════════════════════════ */
+:root{
+  --gold:#d7a843; --gold-hi:#f6d47a; --gold-lo:#7a4c10; --gold-bright:#ffe488;
+  --silver:#c7ced8; --silver-dim:#8d98a8;
+  --bg:#000509; --panel:#020b18; --panel2:#041020;
+  --btn-base:linear-gradient(180deg,#0e0800 0%,#060400 55%,#0c0700 100%);
+  --list-scale:1; --stage-scale:1.15;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{height:100%;background:radial-gradient(ellipse at 78% 0%,rgba(215,168,67,.06),transparent 40%),linear-gradient(180deg,#000509,#00040c);color:#f0e8d4;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-tap-highlight-color:transparent;}
+body{overflow:hidden;}
+button,input,textarea,select{font:inherit;cursor:pointer;}
+.scrollbar-thin::-webkit-scrollbar{width:5px;height:5px;}
+.scrollbar-thin::-webkit-scrollbar-thumb{background:rgba(215,168,67,.25);border-radius:999px;}
+.scrollbar-thin::-webkit-scrollbar-track{background:transparent;}
+
+/* ═══════════════════════════════════════════
+   3D GOLD FOIL BUTTON SYSTEM
+   ═══════════════════════════════════════════ */
+.btn{
+  position:relative; overflow:hidden;
+  height:36px; padding:0 15px; border-radius:11px;
+  border-top:1.5px solid rgba(255,240,150,.45);
+  border-left:1.5px solid rgba(215,168,67,.38);
+  border-right:1.5px solid rgba(160,110,25,.35);
+  border-bottom:1.5px solid rgba(90,60,10,.50);
+  background:var(--btn-base);
+  color:var(--silver); font-weight:800; font-size:12px; letter-spacing:.04em;
+  display:inline-flex; align-items:center; justify-content:center; gap:7px;
+  white-space:nowrap; transition:.15s;
+  box-shadow:0 0 10px rgba(215,168,67,.12),0 4px 12px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,240,150,.12),inset 0 -1px 0 rgba(0,0,0,.35);
+  text-shadow:0 1px 2px rgba(0,0,0,.9);
+}
+.btn::before{content:"";position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(180deg,rgba(255,240,150,.09),transparent);pointer-events:none;}
+.btn:hover{
+  border-top-color:rgba(255,248,180,.65); border-left-color:rgba(246,212,122,.55);
+  color:#fff8df; background:linear-gradient(180deg,#1a1000,#0a0600,#150e00);
+  box-shadow:0 0 18px rgba(215,168,67,.22),0 5px 16px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,240,150,.18),inset 0 -1px 0 rgba(0,0,0,.4);
+}
+.btn:active{transform:scale(.98);}
+
+.btn-primary{
+  border-top-color:rgba(255,248,160,.60); border-left-color:rgba(246,212,122,.55);
+  border-right-color:rgba(180,130,30,.48); border-bottom-color:rgba(110,75,12,.58);
+  background:linear-gradient(180deg,#2a1800,#140c00,#221400);
+  color:var(--gold-hi);
+  box-shadow:0 0 18px rgba(215,168,67,.22),0 5px 14px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,244,160,.18),inset 0 -1px 0 rgba(0,0,0,.4);
+  text-shadow:0 0 8px rgba(215,168,67,.45),0 1px 2px rgba(0,0,0,.9);
+}
+.btn-primary:hover{background:linear-gradient(180deg,#3a2200,#1c1000,#2e1a00);box-shadow:0 0 28px rgba(215,168,67,.32),0 6px 18px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,244,160,.22),inset 0 -1px 0 rgba(0,0,0,.45);}
+.btn-green{border-top-color:rgba(255,248,160,.52);border-left-color:rgba(215,168,67,.42);color:#f4d47d;}
+.btn-purple{border-color:rgba(180,160,100,.28);color:#dce5f2;}
+.btn-danger{border-top-color:rgba(220,140,100,.45);border-left-color:rgba(200,110,70,.38);border-bottom-color:rgba(100,50,20,.5);color:#f2b89a;}
+
+/* Icon buttons — square 3D foil */
+.icon-btn{
+  position:relative; overflow:hidden;
+  width:34px; height:34px; border-radius:10px;
+  border-top:1.5px solid rgba(255,240,150,.38); border-left:1.5px solid rgba(215,168,67,.30);
+  border-right:1.5px solid rgba(150,100,20,.28); border-bottom:1.5px solid rgba(80,55,8,.45);
+  background:var(--btn-base); color:var(--silver);
+  display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
+  transition:.15s;
+  box-shadow:0 0 8px rgba(215,168,67,.08),0 3px 8px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,240,150,.10),inset 0 -1px 0 rgba(0,0,0,.3);
+}
+.icon-btn::before{content:"";position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(180deg,rgba(255,240,150,.07),transparent);pointer-events:none;}
+.icon-btn:hover{border-top-color:rgba(255,248,180,.55);color:#fff7d1;background:linear-gradient(180deg,#181000,#080500,#120d00);box-shadow:0 0 14px rgba(215,168,67,.18),0 4px 10px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,240,150,.15);}
+.icon-btn.on{color:var(--gold-hi);border-top-color:rgba(255,248,160,.6);border-left-color:rgba(246,212,122,.5);background:linear-gradient(180deg,#2a1800,#140c00,#221400);box-shadow:0 0 16px rgba(215,168,67,.22),inset 0 1px 0 rgba(255,244,160,.16);}
+
+/* Stage buttons — premium gold foil */
+.row-stage-btn,.card-stage{
+  position:relative; overflow:hidden;
+  border-top:2px solid rgba(255,248,180,.70); border-left:2px solid rgba(246,212,122,.60);
+  border-right:2px solid rgba(180,130,30,.52); border-bottom:2px solid rgba(100,68,10,.65);
+  background:linear-gradient(180deg,#3c2200,#1e1000,#301800);
+  color:var(--gold-bright);
+  font-weight:950; letter-spacing:.05em;
+  box-shadow:0 0 22px rgba(215,168,67,.30),0 5px 16px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,244,160,.22),inset 0 -1px 0 rgba(0,0,0,.5);
+  text-shadow:0 0 10px rgba(215,168,67,.65),0 0 22px rgba(215,168,67,.25),0 1px 2px rgba(0,0,0,.95);
+  display:inline-flex; align-items:center; justify-content:center; gap:6px;
+  white-space:nowrap; transition:.15s; cursor:pointer; flex-shrink:0;
+}
+.row-stage-btn::before,.card-stage::before{content:"";position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(180deg,rgba(255,244,160,.15),transparent);pointer-events:none;}
+.row-stage-btn{height:32px;padding:0 11px;border-radius:10px;font-size:11px;}
+.card-stage{height:36px;padding:0 14px;border-radius:10px;font-size:12px;margin-left:auto;}
+.row-stage-btn:hover,.card-stage:hover{background:linear-gradient(180deg,#4e2e00,#2a1500,#3e2000);box-shadow:0 0 32px rgba(215,168,67,.40),0 6px 20px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,244,160,.28);}
+
+/* Segmented buttons */
+.seg-btn{
+  position:relative; overflow:hidden;
+  height:34px; padding:0 12px; border-radius:10px;
+  color:var(--silver-dim); font-weight:900; font-size:12px;
+  display:inline-flex; align-items:center; gap:7px; transition:.15s;
+}
+.seg-btn:hover{color:#fff;}
+.seg-btn.active{
+  border-top:1.5px solid rgba(255,248,160,.52); border-left:1.5px solid rgba(246,212,122,.42);
+  border-right:1.5px solid rgba(160,110,25,.36); border-bottom:1.5px solid rgba(80,55,8,.50);
+  background:linear-gradient(180deg,#221400,#100900,#1c1100);
+  color:var(--gold-hi);
+  box-shadow:0 0 16px rgba(215,168,67,.20),inset 0 1px 0 rgba(255,244,160,.14);
+  text-shadow:0 0 8px rgba(215,168,67,.4);
+}
+.seg-btn.active::before{content:"";position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(180deg,rgba(255,244,160,.10),transparent);pointer-events:none;}
+.size-btn{
+  height:28px; padding:0 10px; border-radius:8px;
+  border:1px solid rgba(215,168,67,.22); color:var(--silver-dim);
+  font-weight:900; font-size:11px; transition:.15s;
+}
+.size-btn.active{
+  border-top-color:rgba(255,248,160,.50); border-left-color:rgba(246,212,122,.40);
+  border-bottom-color:rgba(80,55,8,.48); color:var(--gold-hi);
+  background:linear-gradient(180deg,#1e1100,#0d0800,#180f00);
+  box-shadow:0 0 12px rgba(215,168,67,.16);
+}
+
+/* ── Layout ──────────────────────────────────── */
+.layout{display:grid;grid-template-columns:262px 1fr;height:100%;}
+
+/* ── Sidebar + Gold Frame ───────────────────── */
+.sidebar{
+  position:relative; height:100%; width:262px;
+  padding:16px; display:flex; flex-direction:column; gap:10px;
+  background:linear-gradient(170deg,rgba(4,14,30,.99),rgba(1,6,14,.99));
+  overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
+  box-shadow:inset -2px 0 24px rgba(215,168,67,.05),14px 0 40px rgba(0,0,0,.32);
+}
+/* Gold frame line on right */
+.sidebar::after{
+  content:""; position:absolute; top:0; right:0; bottom:0; width:2px;
+  background:linear-gradient(180deg,rgba(215,168,67,.08) 0%,rgba(246,212,122,.65) 18%,rgba(215,168,67,.92) 42%,rgba(255,248,160,.96) 50%,rgba(215,168,67,.92) 58%,rgba(246,212,122,.65) 82%,rgba(215,168,67,.08) 100%);
+  pointer-events:none; z-index:10;
+}
+/* Gold inner glow top */
+.sidebar::before{
+  content:""; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(215,168,67,.45) 30%,rgba(246,212,122,.55) 50%,rgba(215,168,67,.45) 70%,transparent);
+  pointer-events:none; z-index:10;
+}
+.gold-title{font-family:ui-serif,Georgia,serif;color:#fff8dd;text-shadow:0 0 16px rgba(215,168,67,.18);}
+.serdar-led{font-size:11px;font-weight:950;letter-spacing:.42em;color:var(--gold-hi);text-shadow:0 0 6px rgba(246,212,122,.9),0 0 18px rgba(215,168,67,.55);animation:ledPulse 1.6s ease-in-out infinite alternate;}
+@keyframes ledPulse{from{opacity:.72;}to{opacity:1;filter:saturate(1.4);}}
+
+/* Nav buttons */
+.nav-btn{
+  position:relative; width:100%; height:40px; border-radius:12px;
+  padding:0 11px; display:flex; align-items:center; gap:9px;
+  color:#b0bbc9; font-weight:700; font-size:13px;
+  border:1px solid transparent; transition:.15s; overflow:hidden;
+}
+.nav-btn:hover{background:rgba(215,168,67,.06);color:#fff4d4;}
+.nav-btn.active{
+  border-top:1px solid rgba(255,248,160,.40); border-left:1px solid rgba(246,212,122,.32);
+  border-right:1px solid rgba(140,100,20,.28); border-bottom:1px solid rgba(70,48,8,.42);
+  background:linear-gradient(105deg,rgba(215,168,67,.14),rgba(215,168,67,.04));
+  color:var(--gold-hi);
+  box-shadow:0 0 16px rgba(215,168,67,.08),inset 0 1px 0 rgba(255,244,160,.10);
+}
+.nav-btn svg{color:var(--gold);flex-shrink:0;}
+.cat-nav-btn{
+  height:36px; border:1px solid rgba(215,168,67,.16)!important;
+  background:linear-gradient(115deg,rgba(4,14,28,.84),rgba(1,7,17,.78))!important;
+  position:relative; overflow:hidden;
+}
+.cat-nav-btn::after{content:"";position:absolute;inset:0;background:var(--cat-pat,radial-gradient(circle at 80% 50%,rgba(215,168,67,.08),transparent 45%));pointer-events:none;}
+.cat-nav-btn.active{border-top-color:rgba(255,248,160,.48)!important;border-left-color:rgba(246,212,122,.38)!important;box-shadow:0 0 14px rgba(215,168,67,.10)!important;}
+.cat-ico{width:22px;height:22px;border-radius:8px;border:1px solid rgba(215,168,67,.35);background:rgba(215,168,67,.08);display:inline-flex;align-items:center;justify-content:center;color:var(--gold-hi);flex-shrink:0;position:relative;z-index:1;}
+.cat-count{border:1px solid rgba(199,206,216,.14);background:rgba(2,8,18,.42);border-radius:7px;padding:1px 6px;color:var(--silver-dim);font-size:11px;position:relative;z-index:1;}
+
+/* ── Topbar ──────────────────────────────────── */
+.topbar{
+  z-index:40; min-height:66px; padding:11px 18px;
+  display:flex; flex-wrap:wrap; align-items:center; gap:9px;
+  background:rgba(0,4,12,.94); backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(215,168,67,.16);
+  box-shadow:0 10px 36px rgba(0,0,0,.28);
+}
+.menu-toggle{display:none;}
+.main{height:100%;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(ellipse at 78% 8%,rgba(10,26,54,.14),transparent 48%),linear-gradient(180deg,#000610,#00050d);}
+
+/* ── Toolbar ─────────────────────────────────── */
+.premium-toolbar{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; flex-wrap:wrap; margin-bottom:16px; padding:10px 14px;
+  border-top:1px solid rgba(255,240,150,.18); border-left:1px solid rgba(215,168,67,.22);
+  border-right:1px solid rgba(140,100,20,.20); border-bottom:1px solid rgba(80,55,8,.28);
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(8,18,34,.78),rgba(2,8,18,.65));
+  box-shadow:0 10px 30px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,240,150,.06);
+}
+.segmented{display:inline-flex;gap:3px;padding:3px;border:1px solid rgba(215,168,67,.20);background:rgba(0,3,8,.55);border-radius:13px;}
+.glass{background:linear-gradient(180deg,rgba(215,168,67,.055),rgba(215,168,67,.02));border:1px solid rgba(215,168,67,.18);box-shadow:0 20px 60px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.04);}
+
+/* ── Song Row ─────────────────────────────────── */
+.song-row{
+  position:relative; overflow:hidden; border-radius:15px; padding:10px 14px;
+  background:linear-gradient(100deg,rgba(2,8,18,.97),rgba(3,10,22,.95) 55%,rgba(5,14,32,.93));
+  border-top:1.5px solid rgba(215,168,67,.30); border-left:1.5px solid rgba(215,168,67,.22);
+  border-right:1.5px solid rgba(140,100,20,.18); border-bottom:1.5px solid rgba(80,55,8,.30);
+  box-shadow:0 8px 26px rgba(0,0,0,.40),inset 0 1px 0 rgba(255,240,150,.05);
+  transition:.15s ease; cursor:pointer;
+}
+.song-row::before{
+  content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background:radial-gradient(ellipse at 84% 50%,rgba(215,168,67,.10),transparent 38%),linear-gradient(105deg,transparent 52%,rgba(215,168,67,.06) 100%);
+}
+.song-row:nth-child(3n+2)::before{background:radial-gradient(ellipse at 86% 32%,rgba(199,206,216,.12),transparent 34%),linear-gradient(90deg,transparent 55%,rgba(199,206,216,.05));}
+.song-row:nth-child(3n+3)::before{background:repeating-linear-gradient(90deg,transparent 0 11px,rgba(215,168,67,.11) 12px,transparent 14px),radial-gradient(ellipse at 88% 68%,rgba(215,168,67,.09),transparent 30%);}
+.song-row:hover{border-top-color:rgba(255,248,160,.52);border-left-color:rgba(246,212,122,.42);box-shadow:0 12px 36px rgba(0,0,0,.48),0 0 18px rgba(215,168,67,.08);}
+.song-row.selected{border-top-color:rgba(255,248,160,.72);border-left-color:rgba(246,212,122,.60);box-shadow:0 0 0 1px rgba(246,212,122,.15),0 14px 42px rgba(0,0,0,.46),0 0 22px rgba(215,168,67,.14);}
+.song-row.dragging{opacity:.5;transform:scale(.99);}
+.song-row.drag-over{border-color:rgba(34,211,238,.60);box-shadow:0 0 0 1px rgba(34,211,238,.2),0 0 22px rgba(34,211,238,.14);}
+
+.row-inner{position:relative;z-index:1;display:flex;align-items:center;gap:9px;}
+.row-num{color:var(--silver-dim);font-weight:900;font-size:12px;width:26px;text-align:center;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.drag-handle{color:#3a4560;cursor:grab;user-select:none;font-size:14px;line-height:1;}
+.row-title-block{flex:1.4;min-width:0;}
+.song-title{font-family:ui-serif,Georgia,serif;font-size:calc(1rem * var(--list-scale));font-weight:950;color:#fff8df;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.song-artist{font-size:calc(.82rem * var(--list-scale));color:var(--silver-dim);font-weight:700;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.row-meta{display:flex;gap:7px;align-items:center;flex:1.3;min-width:0;}
+.row-styles{display:flex;flex-wrap:wrap;gap:5px;flex:1.1;min-width:0;}
+.row-actions{display:flex;gap:6px;align-items:center;flex-shrink:0;margin-left:auto;}
+.row-mobile-meta{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;padding-left:35px;}
+
+/* Info blocks */
+.info-block{
+  border-top:1px solid rgba(199,206,216,.20); border-left:1px solid rgba(199,206,216,.16);
+  border-right:1px solid rgba(140,130,100,.14); border-bottom:1px solid rgba(80,70,40,.20);
+  background:rgba(2,7,18,.48); border-radius:calc(10px * var(--list-scale));
+  padding:calc(4px * var(--list-scale)) calc(9px * var(--list-scale));
+  min-width:calc(58px * var(--list-scale));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+.info-label{display:block;font-size:calc(.66rem * var(--list-scale));color:var(--silver-dim);font-weight:900;letter-spacing:.07em;text-transform:uppercase;line-height:1;}
+.info-val{display:block;font-size:calc(.88rem * var(--list-scale));font-weight:950;color:#f0ecdc;margin-top:2px;line-height:1.1;}
+.bpm-block{border-top-color:rgba(246,212,122,.45);border-left-color:rgba(215,168,67,.38);background:rgba(215,168,67,.08);}
+.bpm-block .info-label{color:#c9a03a;}
+.bpm-block .info-val{color:var(--gold-hi);text-shadow:0 0 8px rgba(215,168,67,.35);}
+.style-token{min-width:auto;border-color:rgba(199,206,216,.18);background:rgba(2,8,18,.52);}
+.style-token .info-label{color:#7a8595;}
+.style-token .info-val{color:#d8dfe8;white-space:nowrap;max-width:calc(170px * var(--list-scale));overflow:hidden;text-overflow:ellipsis;}
+.style-empty{opacity:.55;}
+
+/* ── Card Grid ────────────────────────────────── */
+.card-grid{display:grid;gap:14px;}
+.card-grid.size-small{grid-template-columns:repeat(auto-fill,minmax(252px,1fr));}
+.card-grid.size-medium{grid-template-columns:repeat(auto-fill,minmax(314px,1fr));}
+.card-grid.size-large{grid-template-columns:repeat(auto-fill,minmax(424px,1fr));}
+
+/* ── Song Card ────────────────────────────────── */
+.song-card{
+  position:relative; border-radius:20px; overflow:hidden;
+  background:linear-gradient(150deg,#030e1e,#010810);
+  border-top:2px solid rgba(255,248,160,.40);
+  border-left:2px solid rgba(215,168,67,.42);
+  border-right:2px solid rgba(140,100,20,.30);
+  border-bottom:2px solid rgba(80,55,8,.42);
+  box-shadow:0 16px 48px rgba(0,0,0,.58),0 0 22px rgba(215,168,67,.10),inset 0 1px 0 rgba(255,240,150,.08);
+  display:flex; flex-direction:column; transition:.18s ease; cursor:pointer;
+}
+.song-card:hover{
+  transform:translateY(-3px);
+  border-top-color:rgba(255,252,180,.65); border-left-color:rgba(246,212,122,.60);
+  box-shadow:0 26px 68px rgba(0,0,0,.66),0 0 30px rgba(215,168,67,.20),inset 0 1px 0 rgba(255,244,160,.12);
+}
+.song-card.selected{border-top-color:rgba(255,252,180,.75);border-left-color:rgba(246,212,122,.68);box-shadow:0 0 0 2px rgba(246,212,122,.18),0 22px 60px rgba(0,0,0,.6),0 0 28px rgba(215,168,67,.18);}
+
+/* Cover Zone */
+.cover-zone{
+  position:relative; height:108px; overflow:hidden;
+  display:flex; align-items:flex-end; padding:10px 12px; flex-shrink:0;
+  background:#030c1a;
+}
+/* Inline art SVG wrapper — replaces CSS background-image for full browser support */
+.cover-art{position:absolute;inset:0;z-index:0;overflow:hidden;line-height:0;}
+.cover-art svg{width:100%;height:100%;display:block;}
+.song-card.size-small-card .cover-zone{height:82px;}
+.song-card.size-large-card .cover-zone{height:148px;}
+.cover-zone::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(2,10,22,.88) 100%);pointer-events:none;}
+.cover-icon{position:relative;z-index:2;opacity:.85;}
+.cover-btns{position:absolute;top:8px;right:8px;z-index:3;display:flex;gap:5px;}
+.cover-btn{
+  width:27px; height:27px; border-radius:8px;
+  border:1px solid rgba(215,168,67,.30);
+  background:rgba(0,4,12,.65); backdrop-filter:blur(8px);
+  color:var(--silver); display:inline-flex; align-items:center; justify-content:center;
+  transition:.14s; font-size:12px; font-weight:900;
+}
+.cover-btn:hover{border-color:rgba(246,212,122,.55);color:var(--gold-hi);}
+
+/* Card Body Zone 2 */
+.card-body{padding:12px 14px 8px;flex:1;display:flex;flex-direction:column;gap:9px;}
+.card-title{font-family:ui-serif,Georgia,serif;font-size:1.04rem;font-weight:950;color:#fff8df;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.card-artist{font-size:.82rem;font-weight:700;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:-4px;}
+.zone-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(215,168,67,.18) 30%,rgba(215,168,67,.18) 70%,transparent);}
+.card-meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+.card-meta-cell{
+  padding:7px 9px; border-radius:10px;
+  border-top:1px solid rgba(199,206,216,.20); border-left:1px solid rgba(199,206,216,.16);
+  border-right:1px solid rgba(130,120,80,.14); border-bottom:1px solid rgba(70,60,30,.22);
+  background:rgba(2,7,18,.58); box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+.card-meta-cell.bpm-cell{border-top-color:rgba(246,212,122,.42);border-left-color:rgba(215,168,67,.35);background:rgba(215,168,67,.08);}
+.card-meta-label{font-size:.66rem;font-weight:900;color:var(--silver-dim);text-transform:uppercase;letter-spacing:.07em;}
+.card-meta-value{font-size:.9rem;font-weight:950;color:#f0ecdc;margin-top:3px;}
+.card-meta-cell.bpm-cell .card-meta-label{color:#c9a03a;}
+.card-meta-cell.bpm-cell .card-meta-value{color:var(--gold-hi);text-shadow:0 0 8px rgba(215,168,67,.35);}
+.style-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.style-mini{
+  display:inline-flex;align-items:center;height:25px;padding:0 9px;border-radius:7px;
+  border:1px solid rgba(199,206,216,.20);background:rgba(2,7,18,.40);
+  color:#c8d0dc;font-size:.71rem;font-weight:850;white-space:nowrap;
+}
+.style-mini.primary{color:var(--gold-hi);border-top-color:rgba(255,248,160,.42);border-left-color:rgba(215,168,67,.35);background:rgba(215,168,67,.08);}
+
+/* Card Actions Zone 3 */
+.card-actions{
+  display:flex;align-items:center;gap:7px;padding:9px 14px 12px;flex-wrap:wrap;
+  border-top:1px solid rgba(215,168,67,.10);
+}
+.card-action{
+  width:34px;height:34px;border-radius:9px;
+  border-top:1px solid rgba(199,206,216,.20);border-left:1px solid rgba(199,206,216,.16);
+  border-right:1px solid rgba(130,120,80,.14);border-bottom:1px solid rgba(70,60,30,.20);
+  background:rgba(2,7,18,.44);display:inline-flex;align-items:center;justify-content:center;
+  color:var(--silver);transition:.14s;flex-shrink:0;
+}
+.card-action:hover{color:#fff7d1;border-top-color:rgba(255,248,160,.42);background:rgba(215,168,67,.08);}
+.card-action.on{color:var(--gold-hi);border-top-color:rgba(255,248,160,.52);border-left-color:rgba(215,168,67,.42);background:rgba(215,168,67,.10);}
+
+/* ── Category Cards ──────────────────────────── */
+.cat-card{
+  position:relative;overflow:hidden;border-radius:20px;
+  background:linear-gradient(145deg,#000c1c,#00060e);
+  border-top:2px solid rgba(255,248,160,.36);border-left:2px solid rgba(215,168,67,.40);
+  border-right:2px solid rgba(140,100,20,.28);border-bottom:2px solid rgba(80,55,8,.38);
+  min-height:188px;transition:.18s;cursor:pointer;
+  box-shadow:0 18px 50px rgba(0,0,0,.54),0 0 20px rgba(215,168,67,.08),inset 0 1px 0 rgba(255,240,150,.06);
+}
+.cat-card:hover{border-top-color:rgba(255,252,180,.60);border-left-color:rgba(246,212,122,.55);box-shadow:0 26px 68px rgba(0,0,0,.64),0 0 28px rgba(215,168,67,.18);transform:translateY(-3px);}
+.cat-card-icon{width:40px;height:40px;border-radius:12px;border:1px solid rgba(215,168,67,.44);background:rgba(215,168,67,.10);display:flex;align-items:center;justify-content:center;color:var(--gold-hi);box-shadow:0 0 14px rgba(215,168,67,.10);}
+.cat-card-title{font-family:ui-serif,Georgia,serif;color:#fff8df;text-shadow:0 0 14px rgba(215,168,67,.12);}
+
+/* ── Modal ────────────────────────────────────── */
+.modal-back{position:fixed;inset:0;background:rgba(0,0,0,.76);backdrop-filter:blur(14px);z-index:80;display:none;align-items:center;justify-content:center;padding:16px;}
+.modal-back.show{display:flex;}
+.modal{width:min(860px,96vw);max-height:88vh;overflow:hidden;border-radius:22px;background:linear-gradient(180deg,#050f1e,#020810);border-top:1.5px solid rgba(255,248,160,.28);border-left:1.5px solid rgba(215,168,67,.30);border-right:1.5px solid rgba(140,100,20,.22);border-bottom:1.5px solid rgba(80,55,8,.35);box-shadow:0 40px 120px rgba(0,0,0,.72);display:flex;flex-direction:column;}
+.modal-body{overflow:auto;padding:20px;}
+.field label{display:block;color:var(--silver-dim);font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
+.field input,.field textarea,.field select{width:100%;border-radius:11px;border:1px solid rgba(215,168,67,.24);background:rgba(2,8,20,.82);padding:10px 13px;color:#f0e8d4;outline:none;}
+.field input:focus,.field textarea:focus,.field select:focus{border-top-color:rgba(255,248,160,.55);border-left-color:rgba(215,168,67,.50);}
+.field textarea{min-height:130px;resize:vertical;line-height:1.55;}
+.chip{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 11px;border-radius:999px;border:1px solid rgba(215,168,67,.35);background:rgba(215,168,67,.10);color:var(--gold-hi);font-size:13px;font-weight:800;}
+.chip button{opacity:.7;cursor:pointer;}.chip button:hover{opacity:1;}
+
+/* Stage overlay */
+.stage-text{font-size:calc(1.65rem * var(--stage-scale));line-height:1.7;white-space:pre-wrap;}
+#stageMeta .info-block{padding:calc(11px * var(--stage-scale)) calc(15px * var(--stage-scale));min-width:calc(108px * var(--stage-scale));border-radius:14px;}
+#stageMeta .info-label{font-size:calc(.72rem * var(--stage-scale));}
+#stageMeta .info-val{font-size:calc(1.14rem * var(--stage-scale));margin-top:5px;}
+
+/* Responsive */
+@media(max-width:900px),(max-width:1180px) and (orientation:portrait){
+  html,body{height:auto;min-height:100%;overflow:auto;}
+  body{overflow:auto;}
+  .layout{display:block;height:auto;min-height:100dvh;}
+  .sidebar{position:fixed;z-index:80;left:0;top:0;bottom:0;width:min(82vw,288px);height:100dvh;max-height:100dvh;transform:translateX(-105%);transition:transform .22s cubic-bezier(.22,1,.36,1);box-shadow:0 24px 80px rgba(0,0,0,.55);}
+  .sidebar.open{transform:translateX(0);}
+  .main{height:auto;min-height:100dvh;overflow:visible;}
+  .topbar{position:sticky;top:0;z-index:50;}
+  .menu-toggle{display:inline-flex;}
+  #content{overflow:visible;padding:14px;}
+}
+@media(max-width:900px){
+  .card-grid.size-small,.card-grid.size-medium,.card-grid.size-large{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));}
+  .row-meta,.row-styles{display:none;}
+}
+@media(max-width:640px){
+  .card-grid.size-small,.card-grid.size-medium,.card-grid.size-large{grid-template-columns:1fr;}
+  .song-row{padding:9px 10px;}
+  .row-num{width:22px;}
+}
+</style>
+</head>
+<body>
+<div id="app" class="layout">
+  <aside id="sidebar" class="sidebar scrollbar-thin">
+    <div class="flex items-center gap-3 px-1 py-1">
+      <div id="logoIcon" class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="border-top:1.5px solid rgba(255,248,160,.45);border-left:1.5px solid rgba(215,168,67,.38);border-right:1.5px solid rgba(140,100,20,.30);border-bottom:1.5px solid rgba(80,55,8,.45);background:linear-gradient(145deg,#1a0e00,#0a0600,#150b00);box-shadow:0 0 22px rgba(215,168,67,.18),inset 0 1px 0 rgba(255,244,160,.14);"></div>
+      <div>
+        <div class="text-base font-black gold-title">Repertuarım</div>
+        <div class="text-[10px] text-slate-500 font-bold tracking-[.18em] uppercase mt-0.5">Sahne Senin</div>
+        <div class="serdar-led mt-1">SERDAR</div>
+      </div>
+    </div>
+    <div class="space-y-1" id="navArea"></div>
+    <div class="mt-auto rounded-2xl p-3" style="border-top:1px solid rgba(255,248,160,.22);border-left:1px solid rgba(215,168,67,.18);border-right:1px solid rgba(140,100,20,.15);border-bottom:1px solid rgba(80,55,8,.22);background:linear-gradient(180deg,rgba(12,8,2,.6),rgba(6,4,1,.4));">
+      <div class="text-[10px] font-black tracking-[.14em] text-slate-500 uppercase mb-2">Veri</div>
+      <div class="grid grid-cols-2 gap-2">
+        <button class="btn btn-green !h-8 !text-[11px]" onclick="openImportExport('export')">Export</button>
+        <button class="btn btn-purple !h-8 !text-[11px]" onclick="openImportExport('import')">Import</button>
+      </div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-toggle" onclick="toggleSidebar()" id="hambIcon"></button>
+      <div class="flex items-center gap-2 flex-wrap">
+        <button class="btn btn-primary" onclick="openSongModal()"><span id="plusIcon1"></span> Şarkı</button>
+        <button class="btn" onclick="openCategoryModal()"><span id="plusIcon2"></span> Kategori</button>
+        <button class="btn btn-purple" onclick="openBulkModal()">Toplu Ekle</button>
+      </div>
+      <div class="relative flex-1 min-w-[260px] max-w-3xl">
+        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" id="searchIcon"></div>
+        <input id="searchInput" style="border-top:1px solid rgba(215,168,67,.26);border-left:1px solid rgba(215,168,67,.20);border-right:1px solid rgba(140,100,20,.18);border-bottom:1px solid rgba(80,55,8,.26);background:rgba(2,8,20,.78);color:#f0e8d4;" class="w-full h-11 rounded-xl pl-11 pr-11 text-sm font-semibold outline-none" placeholder="Şarkı adı, sanatçı veya söz ara…" autocomplete="off"/>
+        <button id="clearSearchBtn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 icon-btn !w-7 !h-7 !rounded-lg" onclick="clearSearch()"></button>
+      </div>
+    </header>
+    <section class="flex-1 overflow-auto scrollbar-thin p-5 lg:p-7" id="content"></section>
+  </main>
+</div>
+
+<!-- SONG MODAL -->
+<div id="songModal" class="modal-back">
+  <div class="modal">
+    <div class="h-14 px-5 flex items-center gap-3" style="border-bottom:1px solid rgba(215,168,67,.14);">
+      <div style="color:rgba(215,168,67,.8);" id="musicIcon"></div>
+      <h2 id="songModalTitle" class="text-base font-black">Şarkı Ekle</h2>
+      <button class="icon-btn ml-auto" onclick="closeModal('songModal')" id="xIcon1"></button>
+    </div>
+    <div class="modal-body scrollbar-thin">
+      <input type="hidden" id="songId"/>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="field"><label>Şarkı Adı</label><input id="songTitle" placeholder="Örn: Uzun İnce Bir Yoldayım"/></div>
+        <div class="field"><label>Sanatçı</label><input id="songArtist" placeholder="Örn: Aşık Veysel"/></div>
+        <div class="field"><label>Kategori</label><select id="songCategory"></select></div>
+        <div class="field"><label>Ton</label><input id="songKey" placeholder="Örn: Am, Dm, Hicaz"/></div>
+        <div class="field"><label>BPM</label><input id="songBpm" placeholder="Örn: 92" inputmode="numeric"/></div>
+        <div class="field"><label>Ölçü</label><input id="songMeasure" placeholder="Örn: 4/4, 2/4, 9/8"/></div>
+      </div>
+      <div class="field mt-4">
+        <label>Style</label>
+        <div class="flex gap-2"><input id="styleInput" class="flex-1" placeholder="Örn: Slow Rock" list="stylesDatalist" onkeydown="styleInputKey(event)"/><button class="btn btn-primary" onclick="addStyleFromInput()">Ekle</button></div>
+        <datalist id="stylesDatalist"></datalist>
+        <div id="styleChips" class="flex flex-wrap gap-2 mt-3"></div>
+      </div>
+      <div class="field mt-4"><label>Sözler</label><textarea id="songLyrics" class="min-h-[200px]" placeholder="Şarkı sözleri..."></textarea></div>
+      <div class="field mt-4"><label>Notlar</label><textarea id="songNotes" class="min-h-[80px]" placeholder="Kısa sahne notları..."></textarea></div>
+    </div>
+    <div class="p-4 flex justify-between gap-2" style="border-top:1px solid rgba(215,168,67,.12);">
+      <button id="deleteSongBtn" class="btn btn-danger hidden" onclick="deleteCurrentSong()">Sil</button>
+      <div class="ml-auto flex gap-2"><button class="btn" onclick="closeModal('songModal')">Vazgeç</button><button class="btn btn-primary" onclick="saveSong()">Kaydet</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY MODAL -->
+<div id="categoryModal" class="modal-back">
+  <div class="modal">
+    <div class="h-14 px-5 flex items-center gap-3" style="border-bottom:1px solid rgba(215,168,67,.14);">
+      <div style="color:rgba(215,168,67,.8);" id="gridIcon"></div>
+      <h2 id="categoryModalTitle" class="text-base font-black">Kategori Ekle</h2>
+      <button class="icon-btn ml-auto" onclick="closeModal('categoryModal')" id="xIcon2"></button>
+    </div>
+    <div class="modal-body scrollbar-thin">
+      <input type="hidden" id="categoryId"/>
+      <div class="field mb-5"><label>Kategori Adı</label><input id="categoryName" placeholder="Örn: Arabesk"/></div>
+      <div class="flex items-center justify-between gap-2 mb-3">
+        <div><div class="text-sm font-black">Kart Görseli Seç</div><div class="text-xs text-slate-500 mt-0.5">Kategorinin kapak arka planı</div></div>
+        <div id="selectedCoverName" class="text-xs font-black" style="color:rgba(215,168,67,.9);"></div>
+      </div>
+      <div id="coverGrid" class="grid grid-cols-3 md:grid-cols-4 gap-3"></div>
+    </div>
+    <div class="p-4 flex justify-between gap-2" style="border-top:1px solid rgba(215,168,67,.12);">
+      <button id="deleteCategoryBtn" class="btn btn-danger hidden" onclick="deleteCurrentCategory()">Sil</button>
+      <div class="ml-auto flex gap-2"><button class="btn" onclick="closeModal('categoryModal')">Vazgeç</button><button class="btn btn-primary" onclick="saveCategory()">Kaydet</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- BULK MODAL -->
+<div id="bulkModal" class="modal-back">
+  <div class="modal">
+    <div class="h-14 px-5 flex items-center gap-3" style="border-bottom:1px solid rgba(215,168,67,.14);">
+      <div style="color:rgba(215,168,67,.8);" id="tableIcon"></div>
+      <h2 class="text-base font-black">Toplu Şarkı Ekle</h2>
+      <button class="icon-btn ml-auto" onclick="closeModal('bulkModal')" id="xIcon3"></button>
+    </div>
+    <div class="modal-body scrollbar-thin">
+      <div class="rounded-xl p-4 mb-4" style="border:1px solid rgba(215,168,67,.18);background:rgba(215,168,67,.06);">
+        <div class="font-black mb-1" style="color:rgba(215,168,67,.9);">Basit: </div><code class="text-sm text-slate-200">Şarkı Adı &nbsp; Sanatçı &nbsp; Kategori</code>
+        <div class="font-black mt-3 mb-1" style="color:rgba(215,168,67,.9);">Gelişmiş: </div><code class="text-sm text-slate-200">Şarkı &nbsp; Sanatçı &nbsp; Kategori &nbsp; BPM &nbsp; Ölçü &nbsp; Ton &nbsp; Style</code>
+      </div>
+      <div class="field"><label>Excel'den kopyala / yapıştır</label><textarea id="bulkText" class="min-h-[260px]" placeholder="Şarkı Adı&#9;Sanatçı&#9;Kategori"></textarea></div>
+      <div id="bulkResult" class="text-sm text-slate-300 mt-3"></div>
+    </div>
+    <div class="p-4 flex justify-end gap-2" style="border-top:1px solid rgba(215,168,67,.12);">
+      <button class="btn" onclick="closeModal('bulkModal')">Vazgeç</button>
+      <button class="btn btn-primary" onclick="importBulkSongs()">İçe Aktar</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMPORT/EXPORT MODAL -->
+<div id="importExportModal" class="modal-back">
+  <div class="modal">
+    <div class="h-14 px-5 flex items-center gap-3" style="border-bottom:1px solid rgba(215,168,67,.14);">
+      <div style="color:rgba(215,168,67,.8);" id="dataIcon"></div>
+      <h2 class="text-base font-black">Import / Export</h2>
+      <button class="icon-btn ml-auto" onclick="closeModal('importExportModal')" id="xIcon4"></button>
+    </div>
+    <div class="modal-body scrollbar-thin">
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="glass rounded-2xl p-4"><div class="text-sm font-black mb-2">Yedek Al</div><p class="text-xs text-slate-400 mb-4">Tüm veriyi JSON olarak indirir.</p><button class="btn btn-green" onclick="exportJson()">JSON Export</button></div>
+        <div class="glass rounded-2xl p-4"><div class="text-sm font-black mb-2">Yedek Yükle</div><p class="text-xs text-slate-400 mb-4">JSON dosyası seç veya yapıştır.</p><input id="importFile" type="file" accept=".json,.html,.txt" class="text-xs text-slate-300" onchange="readImportFile(event)"/></div>
+      </div>
+      <div class="field mt-5"><label>Import İçeriği</label><textarea id="importText" class="min-h-[200px]" placeholder="JSON veya eski HTML içeriğini buraya yapıştır..."></textarea></div>
+      <div class="flex flex-wrap gap-2 mt-3">
+        <button class="btn btn-primary" onclick="importNewJson()">Yeni JSON Yükle</button>
+        <button class="btn btn-purple" onclick="importLegacyData()">Eski Listeyi Dönüştür</button>
+        <button class="btn btn-danger" onclick="resetAllData()">Tümünü Sıfırla</button>
+      </div>
+      <div id="importResult" class="mt-4 text-sm text-slate-300"></div>
+      <div class="mt-5 glass rounded-2xl p-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+          <div><div class="text-sm font-black">Style Yönetimi</div><p class="text-xs text-slate-400">Style isimlerini düzenle veya sil.</p></div>
+          <button class="btn" onclick="renderStyleManager()">Yenile</button>
+        </div>
+        <div id="styleManager" class="flex flex-wrap gap-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STAGE OVERLAY -->
+<div id="stageOverlay" class="fixed inset-0 z-[100] bg-[#010206] hidden flex-col">
+  <div class="border-b border-white/10 bg-black/70 backdrop-blur-xl p-4 flex flex-wrap gap-3 items-center">
+    <div class="flex gap-2"><button class="btn" onclick="closeStage()">← Liste</button><button class="btn" onclick="prevStageSong()">Önceki</button><button class="btn" onclick="nextStageSong()">Sonraki</button><button class="btn" onclick="changeStageScale(-.08)">A−</button><button class="btn" onclick="changeStageScale(.08)">A+</button></div>
+    <div class="min-w-0 flex-1"><div id="stageTitle" class="text-xl lg:text-3xl font-black truncate"></div><div id="stageSub" class="text-sm text-slate-400 font-bold truncate"></div></div>
+  </div>
+  <div id="stageMeta" class="p-4 flex flex-wrap gap-3" style="border-bottom:1px solid rgba(255,255,255,.08);font-size:calc(1.1rem * var(--stage-scale));"></div>
+  <div class="flex-1 overflow-auto scrollbar-thin p-5 lg:p-10"><div id="stageLyrics" class="stage-text max-w-5xl mx-auto"></div></div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="fixed left-1/2 bottom-6 -translate-x-1/2 translate-y-20 opacity-0 transition-all z-[150] rounded-2xl px-5 py-3 text-sm font-black shadow-2xl" style="border:1px solid rgba(215,168,67,.30);background:#030f1e;color:rgba(246,212,122,.92);"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   REPERTUAR STAGE cldV3.1 — Single clean JS block
+   ═══════════════════════════════════════════════════ */
+window.addEventListener('error',function(e){try{const c=document.getElementById('content');if(c&&!c.innerHTML.trim())c.innerHTML='<div style="margin:24px;padding:20px;border:1px solid rgba(215,168,67,.3);border-radius:16px;background:rgba(215,168,67,.06);color:#f0d48a;font-family:system-ui"><b>Hata:</b> '+String(e.message||'?')+'</div>';}catch(_){}});
+
+const STORAGE_KEY='repertuar_sahne_v1_3';
+const LEGACY_KEYS=['rep_db_v8','rep_sets_v8','rep_active_v8','rep_prefs_v8','rep_sections_digital_v1','repertuar_sahne_v1','repertuar_sahne_v1_1','repertuar_sahne_v1_2'];
+const uid=()=>'id_'+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
+const now=()=>new Date().toISOString();
+
+/* ── Icons ─────────────────────────────────────── */
+const IC={
+  search:'<svg viewBox="0 0 24 24" width="18" height="18" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></svg>',
+  x:'<svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  menu:'<svg viewBox="0 0 24 24" width="19" height="19" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  home:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M3 11 12 4l9 7v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
+  grid:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><rect x="4" y="4" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"/><rect x="13" y="4" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"/><rect x="4" y="13" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"/></svg>',
+  list:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M9 6h11M9 12h11M9 18h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 6h.01M4 12h.01M4 18h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>',
+  star:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2l-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
+  edit:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m13 6 5 5" stroke="currentColor" stroke-width="2"/></svg>',
+  play:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M8 5v14l11-7L8 5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
+  mic:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 14a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z" stroke="currentColor" stroke-width="2"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  music:'<svg viewBox="0 0 24 24" width="19" height="19" fill="none"><path d="M9 18V5l10-2v13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="3" stroke="currentColor" stroke-width="2"/></svg>',
+  table:'<svg viewBox="0 0 24 24" width="19" height="19" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M4 10h16M10 4v16" stroke="currentColor" stroke-width="2"/></svg>',
+  data:'<svg viewBox="0 0 24 24" width="19" height="19" fill="none"><ellipse cx="12" cy="6" rx="7" ry="3" stroke="currentColor" stroke-width="2"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" stroke="currentColor" stroke-width="2"/></svg>',
+  fav:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 21.6C12 21.6 3 14.4 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 13.6-9 13.6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
+  stage:'<svg viewBox="0 0 22 20" width="14" height="14" fill="none"><circle cx="11" cy="5" r="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M5 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M1 19h20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'
+};
+
+/* ── Logo SVG ─────────────────────────────────── */
+const LOGO_SVG=`<svg viewBox="0 0 80 64" width="48" height="38" fill="none" aria-hidden="true"><defs><linearGradient id="lg" x1="4" y1="4" x2="76" y2="60"><stop stop-color="#fffce8"/><stop offset=".25" stop-color="#f6d47a"/><stop offset=".60" stop-color="#d7a843"/><stop offset="1" stop-color="#8a5c18"/></linearGradient><filter id="lf" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g fill="url(#lg)" filter="url(#lf)"><rect x="28" y="8" width="5" height="34" rx="2.5"/><rect x="48" y="4" width="5" height="36" rx="2.5"/><path d="M28 8c6 4.5 14 6.5 20 5v6c-6 1.5-14-.5-20-5V8Z"/><ellipse cx="20" cy="44" rx="10" ry="7.5" transform="rotate(-12 20 44)"/><ellipse cx="40" cy="42" rx="10" ry="7.5" transform="rotate(-12 40 42)"/></g></svg>`;
+
+/* ── Card note icon (cover zone) ─────────────── */
+const NOTE_SVG=`<svg viewBox="0 0 52 56" width="34" height="34" fill="none" aria-hidden="true"><defs><linearGradient id="ng" x1="4" y1="4" x2="48" y2="52"><stop stop-color="#fffce8"/><stop offset=".28" stop-color="#f6d47a"/><stop offset=".62" stop-color="#d7a843"/><stop offset="1" stop-color="#8a5c18"/></linearGradient><filter id="nf" x="-30%" y="-20%" width="160%" height="140%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g fill="url(#ng)" filter="url(#nf)"><rect x="22" y="6" width="5" height="30" rx="2.5"/><rect x="38" y="2" width="5" height="32" rx="2.5"/><path d="M22 6c5 4 11 6 16 4.5v6c-5 1.5-11-.5-16-4.5V6Z"/><ellipse cx="14" cy="38" rx="9" ry="6.5" transform="rotate(-10 14 38)"/><ellipse cx="31" cy="36" rx="9" ry="6.5" transform="rotate(-10 31 36)"/></g></svg>`;
+
+/* ── Mini note icon for row/compact ─────────── */
+const NOTE_SM=`<svg viewBox="0 0 48 48" width="22" height="22" fill="none"><defs><linearGradient id="ns-g" x1="5" y1="4" x2="42" y2="44"><stop stop-color="#f6d47a"/><stop offset=".55" stop-color="#d7a843"/><stop offset="1" stop-color="#7a4c10"/></linearGradient><filter id="ns-f"><feDropShadow dx="0" dy="0" stdDeviation="1.8" flood-color="#d7a843" flood-opacity=".75"/></filter></defs><g fill="url(#ns-g)" filter="url(#ns-f)"><path d="M15 8h4v24c0 4.5-3.5 7.5-9 6.5-4.5-.7-7-4-5-8 2-3.5 6.5-5 10-2.5V8Z"/><path d="M28 5h4v26c0 4.5-3.5 7.5-9 6.5-4.5-.7-7-4-5-8 2-3.5 6.5-5 10-2.5V5Z"/><path d="M19 8c4 4.5 9 6.5 13 5v6c-5 1-9.5-.5-13-5V8Z"/></g></svg>`;
+
+/* ══════════════════════════════════════════════
+   12 ART BACKGROUND SVGs — Cover zone
+   ══════════════════════════════════════════════ */
+const ART_DEFS=[
+  {id:'cv-drops',  label:'Su Damlacıkları'},
+  {id:'cv-meteor', label:'Meteor Yağmuru'},
+  {id:'cv-storm',  label:'Fırtına Bulutu'},
+  {id:'cv-galaxy', label:'Galaksi / Uzay'},
+  {id:'cv-floral', label:'Altın Arabesk'},
+  {id:'cv-eq',     label:'EQ Barları'},
+  {id:'cv-waves',  label:'Altın Dalgalar'},
+  {id:'cv-crystal',label:'Kristal / Buz'},
+  {id:'cv-ember',  label:'Kor / Ateş'},
+  {id:'cv-circuit',label:'Devre Kartı'},
+  {id:'cv-aurora', label:'Kuzey Işıkları'},
+  {id:'cv-vinyl',  label:'Vinil Plak'}
+];
+
+function artSvg(id){
+  const S={
+'cv-drops':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><radialGradient id="d" cx="32%" cy="26%" r="72%"><stop offset="0%" stop-color="#ffffff" stop-opacity=".96"/><stop offset="16%" stop-color="#cce8fc" stop-opacity=".88"/><stop offset="52%" stop-color="#1e5272" stop-opacity=".65"/><stop offset="84%" stop-color="#061420" stop-opacity=".78"/><stop offset="100%" stop-color="#020a16" stop-opacity=".92"/></radialGradient><radialGradient id="d2" cx="30%" cy="24%" r="72%"><stop offset="0%" stop-color="#ffffff" stop-opacity=".92"/><stop offset="18%" stop-color="#d8effe" stop-opacity=".82"/><stop offset="55%" stop-color="#2a6888" stop-opacity=".58"/><stop offset="100%" stop-color="#030c1a" stop-opacity=".88"/></radialGradient><filter id="sh"><feGaussianBlur stdDeviation="4"/></filter><filter id="gw"><feGaussianBlur stdDeviation="4.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect width="400" height="140" fill="#020c1c"/><ellipse cx="310" cy="70" rx="140" ry="80" fill="#081e34" opacity=".7"/><ellipse cx="282" cy="110" rx="24" ry="6" fill="#000" opacity=".55" filter="url(#sh)"/><ellipse cx="338" cy="96" rx="17" ry="4.5" fill="#000" opacity=".50" filter="url(#sh)"/><ellipse cx="374" cy="116" rx="13" ry="3.5" fill="#000" opacity=".45" filter="url(#sh)"/><ellipse cx="244" cy="97" rx="19" ry="5" fill="#000" opacity=".48" filter="url(#sh)"/><ellipse cx="308" cy="120" rx="11" ry="3" fill="#000" opacity=".42" filter="url(#sh)"/><ellipse cx="386" cy="60" rx="15" ry="4" fill="#000" opacity=".45" filter="url(#sh)"/><circle cx="282" cy="86" r="24" fill="url(#d)"/><circle cx="338" cy="72" r="17" fill="url(#d2)"/><circle cx="374" cy="102" r="13" fill="url(#d)"/><circle cx="244" cy="78" r="19" fill="url(#d2)"/><circle cx="308" cy="112" r="11" fill="url(#d)"/><circle cx="386" cy="46" r="15" fill="url(#d2)"/><circle cx="274" cy="76" r="6" fill="white" opacity=".80" filter="url(#gw)"/><circle cx="330" cy="63" r="4.2" fill="white" opacity=".74" filter="url(#gw)"/><circle cx="367" cy="94" r="3.4" fill="white" opacity=".70"/><circle cx="237" cy="70" r="4.8" fill="white" opacity=".72" filter="url(#gw)"/><circle cx="302" cy="105" r="2.8" fill="white" opacity=".65"/><circle cx="379" cy="38" r="3.6" fill="white" opacity=".70" filter="url(#gw)"/></svg>`,
+
+'cv-meteor':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><linearGradient id="mt1" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffffff" stop-opacity=".96"/><stop offset="18%" stop-color="#f6d47a" stop-opacity=".88"/><stop offset="55%" stop-color="#d7a843" stop-opacity=".35"/><stop offset="100%" stop-color="transparent" stop-opacity="0"/></linearGradient><linearGradient id="mt2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffe8a0" stop-opacity=".88"/><stop offset="35%" stop-color="#f6c844" stop-opacity=".55"/><stop offset="100%" stop-color="transparent" stop-opacity="0"/></linearGradient><filter id="mb"><feGaussianBlur stdDeviation="1.8"/></filter><filter id="mg"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect width="400" height="140" fill="#01050e"/><circle cx="180" cy="22" r="1.2" fill="white" opacity=".65"/><circle cx="225" cy="48" r=".9" fill="white" opacity=".50"/><circle cx="265" cy="14" r="1.4" fill="white" opacity=".72"/><circle cx="300" cy="36" r="1" fill="white" opacity=".55"/><circle cx="340" cy="58" r=".8" fill="white" opacity=".45"/><circle cx="155" cy="32" r="1.1" fill="white" opacity=".58"/><circle cx="385" cy="26" r=".9" fill="white" opacity=".52"/><circle cx="210" cy="62" r="1.3" fill="#ffd87a" opacity=".45"/><circle cx="350" cy="18" r=".8" fill="white" opacity=".40"/><line x1="392" y1="8" x2="220" y2="92" stroke="url(#mt1)" stroke-width="3.2" filter="url(#mg)"/><line x1="392" y1="8" x2="220" y2="92" stroke="white" stroke-width=".9" opacity=".88"/><line x1="378" y1="4" x2="240" y2="72" stroke="url(#mt2)" stroke-width="2.2"/><line x1="400" y1="36" x2="275" y2="115" stroke="url(#mt1)" stroke-width="2.8" filter="url(#mg)"/><line x1="400" y1="36" x2="275" y2="115" stroke="white" stroke-width=".8" opacity=".82"/><line x1="388" y1="55" x2="268" y2="132" stroke="url(#mt2)" stroke-width="2"/><line x1="396" y1="22" x2="304" y2="88" stroke="url(#mt1)" stroke-width="1.8"/><circle cx="392" cy="8" r="4.5" fill="white" opacity=".96" filter="url(#mg)"/><circle cx="400" cy="36" r="4" fill="white" opacity=".92" filter="url(#mg)"/><circle cx="378" cy="4" r="3.2" fill="#ffe8a0" opacity=".88" filter="url(#mg)"/></svg>`,
+
+'cv-storm':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><radialGradient id="cl1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f0f4ff" stop-opacity=".92"/><stop offset="40%" stop-color="#ccd4e8" stop-opacity=".70"/><stop offset="100%" stop-color="#0a1022" stop-opacity="0"/></radialGradient><radialGradient id="cl2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#e8eef8" stop-opacity=".85"/><stop offset="45%" stop-color="#b8c4da" stop-opacity=".58"/><stop offset="100%" stop-color="#060e1c" stop-opacity="0"/></radialGradient><filter id="sf"><feGaussianBlur stdDeviation="8"/></filter><filter id="sg"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect width="400" height="140" fill="#060c18"/><ellipse cx="310" cy="55" rx="120" ry="75" fill="url(#cl1)" filter="url(#sf)"/><ellipse cx="350" cy="42" rx="85" ry="58" fill="url(#cl2)" filter="url(#sf)"/><ellipse cx="280" cy="68" rx="100" ry="65" fill="url(#cl1)" filter="url(#sf)"/><ellipse cx="370" cy="62" rx="70" ry="50" fill="#d8e4f2" opacity=".28" filter="url(#sf)"/><ellipse cx="310" cy="55" rx="80" ry="52" fill="#edf2fc" opacity=".22" filter="url(#sf)"/><polyline points="355,18 345,52 358,52 340,86" stroke="#ffe066" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#sg)" opacity=".88"/><polyline points="355,18 345,52 358,52 340,86" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".72"/></svg>`,
+
+'cv-galaxy':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><radialGradient id="gx" cx="68%" cy="44%" r="52%"><stop offset="0%" stop-color="#8844cc" stop-opacity=".55"/><stop offset="35%" stop-color="#442288" stop-opacity=".35"/><stop offset="70%" stop-color="#1a0a44" stop-opacity=".20"/><stop offset="100%" stop-color="#000408" stop-opacity="0"/></radialGradient><radialGradient id="gx2" cx="72%" cy="42%" r="38%"><stop offset="0%" stop-color="#4488ff" stop-opacity=".35"/><stop offset="100%" stop-color="transparent" stop-opacity="0"/></radialGradient><filter id="gf"><feGaussianBlur stdDeviation="3"/></filter></defs><rect width="400" height="140" fill="#000306"/><ellipse cx="280" cy="62" rx="160" ry="90" fill="url(#gx)"/><ellipse cx="300" cy="58" rx="100" ry="60" fill="url(#gx2)"/><circle cx="260" cy="55" r="4" fill="white" opacity=".92"/><circle cx="260" cy="55" r="8" fill="white" opacity=".18" filter="url(#gf)"/><circle cx="310" cy="40" r="1.4" fill="white" opacity=".82"/><circle cx="328" cy="62" r="1" fill="white" opacity=".70"/><circle cx="288" cy="30" r="1.8" fill="white" opacity=".78"/><circle cx="350" cy="50" r="1.2" fill="white" opacity=".68"/><circle cx="240" cy="78" r="1.5" fill="white" opacity=".75"/><circle cx="380" cy="35" r="1" fill="white" opacity=".65"/><circle cx="370" cy="74" r="1.3" fill="white" opacity=".72"/><circle cx="226" cy="45" r=".9" fill="white" opacity=".60"/><circle cx="342" cy="82" r="1.1" fill="white" opacity=".68"/><circle cx="272" cy="96" r=".8" fill="white" opacity=".55"/><circle cx="388" cy="58" r=".9" fill="white" opacity=".62"/><circle cx="298" cy="104" r="1.2" fill="white" opacity=".58"/><circle cx="316" cy="18" r=".8" fill="#aaddff" opacity=".70"/><circle cx="356" cy="28" r="1" fill="#aaddff" opacity=".65"/><circle cx="232" cy="62" r=".9" fill="#cc88ff" opacity=".55"/><circle cx="384" cy="90" r=".8" fill="#cc88ff" opacity=".50"/><circle cx="252" cy="110" r="1" fill="white" opacity=".48"/><circle cx="362" cy="110" r=".9" fill="white" opacity=".45"/></svg>`,
+
+'cv-floral':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><linearGradient id="fl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff7c0"/><stop offset="45%" stop-color="#f6d47a"/><stop offset="100%" stop-color="#c8901e"/></linearGradient><filter id="ff"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect width="400" height="140" fill="#020a14"/><g stroke="url(#fl)" fill="none" filter="url(#ff)" transform="translate(290,70)"><circle r="28" stroke-width="1.4" opacity=".72"/><circle r="44" stroke-width="1" opacity=".50"/><circle r="60" stroke-width=".8" opacity=".34"/><path d="M0-28 C8-14 8 14 0 28 C-8 14 -8-14 0-28Z" stroke-width="1.8" opacity=".80"/><path d="M28 0 C14 8 -14 8 -28 0 C-14-8 14-8 28 0Z" stroke-width="1.8" opacity=".80"/><path d="M20-20 C8-5 5 8 -20 20 C-8 5 -5-8 20-20Z" stroke-width="1.4" opacity=".65"/><path d="M-20-20 C-8-5 -5 8 20 20 C8 5 5-8 -20-20Z" stroke-width="1.4" opacity=".65"/><path d="M0-42 C12-22 12 22 0 42 C-12 22 -12-22 0-42Z" stroke-width="1.2" opacity=".55"/><path d="M42 0 C22 12 -22 12 -42 0 C-22-12 22-12 42 0Z" stroke-width="1.2" opacity=".55"/><circle r="8" stroke-width="2.5" opacity=".88"/><circle r="3" fill="url(#fl)" stroke="none" opacity=".90"/></g><g stroke="url(#fl)" fill="none" opacity=".30" transform="translate(350,30) scale(.45)"><circle r="28" stroke-width="1.8"/><path d="M0-28 C8-14 8 14 0 28 C-8 14 -8-14 0-28Z" stroke-width="2.2"/><path d="M28 0 C14 8 -14 8 -28 0 C-14-8 14-8 28 0Z" stroke-width="2.2"/><circle r="8" stroke-width="3"/></g></svg>`,
+
+'cv-eq':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><linearGradient id="eq1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ff8800" stop-opacity=".95"/><stop offset="45%" stop-color="#f6a400" stop-opacity=".88"/><stop offset="100%" stop-color="#d75800" stop-opacity=".72"/></linearGradient><linearGradient id="eq2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffb000" stop-opacity=".90"/><stop offset="100%" stop-color="#cc6600" stop-opacity=".68"/></linearGradient><linearGradient id="eq3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffd040" stop-opacity=".88"/><stop offset="100%" stop-color="#d7a843" stop-opacity=".65"/></linearGradient><filter id="ef"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect width="400" height="140" fill="#010810"/><rect x="210" y="140" width="14" height="0" fill="url(#eq1)"/><rect x="230" y="52" width="14" height="88" fill="url(#eq1)" rx="3" filter="url(#ef)"/><rect x="250" y="72" width="14" height="68" fill="url(#eq2)" rx="3" filter="url(#ef)"/><rect x="270" y="28" width="14" height="112" fill="url(#eq1)" rx="3" filter="url(#ef)"/><rect x="290" y="62" width="14" height="78" fill="url(#eq2)" rx="3" filter="url(#ef)"/><rect x="310" y="18" width="14" height="122" fill="url(#eq3)" rx="3" filter="url(#ef)"/><rect x="330" y="44" width="14" height="96" fill="url(#eq1)" rx="3" filter="url(#ef)"/><rect x="350" y="78" width="14" height="62" fill="url(#eq2)" rx="3" filter="url(#ef)"/><rect x="370" y="36" width="14" height="104" fill="url(#eq3)" rx="3" filter="url(#ef)"/><rect x="230" y="52" width="14" height="4" fill="#ffe080" rx="2" opacity=".90"/><rect x="270" y="28" width="14" height="4" fill="#ffe080" rx="2" opacity=".90"/><rect x="310" y="18" width="14" height="4" fill="#fff0a0" rx="2" opacity=".92"/><rect x="370" y="36" width="14" height="4" fill="#ffe080" rx="2" opacity=".88"/></svg>`,
+
+'cv-waves':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><linearGradient id="wv" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#d7a843" stop-opacity="0"/><stop offset="20%" stop-color="#f6d47a" stop-opacity=".85"/><stop offset="50%" stop-color="#ffe488" stop-opacity=".95"/><stop offset="80%" stop-color="#f6d47a" stop-opacity=".85"/><stop offset="100%" stop-color="#d7a843" stop-opacity="0"/></linearGradient><filter id="wf"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect width="400" height="140" fill="#020c1a"/><path d="M80 95 C120 60 160 110 200 75 S280 40 320 75 S370 60 400 80" stroke="url(#wv)" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#wf)"/><path d="M60 110 C100 75 140 125 180 90 S260 55 300 90 S350 75 400 95" stroke="url(#wv)" stroke-width="2.8" fill="none" stroke-linecap="round" opacity=".75"/><path d="M100 75 C140 40 180 90 220 55 S300 20 340 55 S375 42 400 58" stroke="url(#wv)" stroke-width="2" fill="none" stroke-linecap="round" opacity=".55"/><path d="M150 125 C190 90 230 135 270 100 S340 70 380 100" stroke="url(#wv)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".38"/></svg>`,
+
+'cv-crystal':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><linearGradient id="cr1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e8f4ff" stop-opacity=".90"/><stop offset="50%" stop-color="#88ccee" stop-opacity=".65"/><stop offset="100%" stop-color="#1a4466" stop-opacity=".40"/></linearGradient><linearGradient id="cr2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#d0eeff" stop-opacity=".75"/><stop offset="100%" stop-color="#2255aa" stop-opacity=".30"/></linearGradient><filter id="cf"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect width="400" height="140" fill="#040c1c"/><polygon points="280,10 340,50 330,110 270,120 220,80 240,20" fill="none" stroke="url(#cr1)" stroke-width="1.8" filter="url(#cf)"/><polygon points="350,20 395,55 385,100 340,110 308,75 320,28" fill="none" stroke="url(#cr2)" stroke-width="1.4"/><polygon points="240,35 285,62 278,105 234,112 200,85 208,40" fill="none" stroke="url(#cr1)" stroke-width="1.2" opacity=".65"/><line x1="280" y1="10" x2="330" y2="110" stroke="url(#cr1)" stroke-width=".8" opacity=".45"/><line x1="240" y1="20" x2="340" y2="50" stroke="url(#cr2)" stroke-width=".8" opacity=".45"/><line x1="220" y1="80" x2="330" y2="110" stroke="url(#cr1)" stroke-width=".6" opacity=".35"/><circle cx="280" cy="10" r="3" fill="#e8f4ff" opacity=".88" filter="url(#cf)"/><circle cx="395" cy="55" r="2.5" fill="#d0eeff" opacity=".80"/><circle cx="340" cy="50" r="2" fill="#e8f4ff" opacity=".78"/></svg>`,
+
+'cv-ember':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><radialGradient id="em1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ff9940" stop-opacity=".95"/><stop offset="50%" stop-color="#cc4400" stop-opacity=".65"/><stop offset="100%" stop-color="#660000" stop-opacity="0"/></radialGradient><radialGradient id="em2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffcc20" stop-opacity=".90"/><stop offset="55%" stop-color="#dd6600" stop-opacity=".55"/><stop offset="100%" stop-color="transparent" stop-opacity="0"/></radialGradient><filter id="emf"><feGaussianBlur stdDeviation="5"/></filter><filter id="eg"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect width="400" height="140" fill="#08020a"/><ellipse cx="300" cy="110" rx="120" ry="50" fill="url(#em1)" filter="url(#emf)"/><ellipse cx="350" cy="120" rx="80" ry="35" fill="url(#em2)" filter="url(#emf)"/><circle cx="265" cy="88" r="5" fill="#ff9940" opacity=".90" filter="url(#eg)"/><circle cx="288" cy="62" r="3.5" fill="#ffcc40" opacity=".88" filter="url(#eg)"/><circle cx="312" cy="75" r="4.5" fill="#ff8020" opacity=".85" filter="url(#eg)"/><circle cx="340" cy="48" r="3" fill="#ffcc20" opacity=".80" filter="url(#eg)"/><circle cx="358" cy="68" r="4" fill="#ff9940" opacity=".82" filter="url(#eg)"/><circle cx="375" cy="44" r="2.8" fill="#ffee60" opacity=".78" filter="url(#eg)"/><circle cx="385" cy="82" r="3.5" fill="#ff8020" opacity=".75" filter="url(#eg)"/><circle cx="250" cy="105" r="4.5" fill="#ff6010" opacity=".85" filter="url(#eg)"/><circle cx="328" cy="96" r="3.2" fill="#ff9940" opacity=".80" filter="url(#eg)"/><circle cx="294" cy="110" r="6" fill="#ff5500" opacity=".70" filter="url(#emf)"/></svg>`,
+
+'cv-circuit':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><filter id="nf"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect width="400" height="140" fill="#000e06"/><g stroke="#00ff88" stroke-width="1.2" fill="none" opacity=".70" filter="url(#nf)"><line x1="200" y1="70" x2="260" y2="70"/><line x1="260" y1="70" x2="260" y2="30"/><line x1="260" y1="30" x2="320" y2="30"/><line x1="320" y1="30" x2="320" y2="90"/><line x1="320" y1="90" x2="380" y2="90"/><line x1="380" y1="90" x2="380" y2="50"/><line x1="260" y1="70" x2="260" y2="110"/><line x1="260" y1="110" x2="340" y2="110"/><line x1="340" y1="110" x2="340" y2="70"/><line x1="340" y1="70" x2="380" y2="70"/></g><g stroke="#00ff88" stroke-width=".8" fill="none" opacity=".40"><line x1="210" y1="50" x2="240" y2="50"/><line x1="240" y1="50" x2="240" y2="20"/><line x1="240" y1="20" x2="290" y2="20"/><line x1="350" y1="120" x2="390" y2="120"/><line x1="390" y1="120" x2="390" y2="100"/></g><g fill="#00ff88" filter="url(#nf)"><rect x="258" y="68" width="5" height="5" opacity=".90"/><rect x="318" y="28" width="5" height="5" opacity=".88"/><rect x="378" y="88" width="5" height="5" opacity=".85"/><rect x="258" y="108" width="5" height="5" opacity=".82"/><rect x="338" y="68" width="5" height="5" opacity=".80"/><rect x="378" y="68" width="5" height="5" opacity=".78"/><rect x="238" y="48" width="4" height="4" opacity=".65"/><rect x="288" y="18" width="4" height="4" opacity=".62"/></g></svg>`,
+
+'cv-aurora':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><linearGradient id="au1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00ffaa" stop-opacity="0"/><stop offset="30%" stop-color="#00dd88" stop-opacity=".65"/><stop offset="65%" stop-color="#00aa66" stop-opacity=".75"/><stop offset="100%" stop-color="#004433" stop-opacity="0"/></linearGradient><linearGradient id="au2" x1="0%" y1="0%" x2="100%" y2="80%"><stop offset="0%" stop-color="#8844ff" stop-opacity="0"/><stop offset="35%" stop-color="#6622dd" stop-opacity=".55"/><stop offset="70%" stop-color="#441188" stop-opacity=".65"/><stop offset="100%" stop-color="#220055" stop-opacity="0"/></linearGradient><linearGradient id="au3" x1="0%" y1="0%" x2="100%" y2="60%"><stop offset="0%" stop-color="#00ccff" stop-opacity="0"/><stop offset="40%" stop-color="#0088dd" stop-opacity=".45"/><stop offset="100%" stop-color="#003366" stop-opacity="0"/></linearGradient><filter id="auf"><feGaussianBlur stdDeviation="9"/></filter></defs><rect width="400" height="140" fill="#000812"/><path d="M150 0 C200 40 250 20 300 60 S360 30 400 50 L400 140 L0 140 Z" fill="url(#au1)" filter="url(#auf)" opacity=".80"/><path d="M100 0 C160 50 220 10 280 55 S360 20 400 45 L400 140 L0 140 Z" fill="url(#au2)" filter="url(#auf)" opacity=".65"/><path d="M200 0 C240 35 280 15 320 50 S380 30 400 42 L400 140 L0 140 Z" fill="url(#au3)" filter="url(#auf)" opacity=".55"/></svg>`,
+
+'cv-vinyl':`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140"><defs><radialGradient id="vn" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#666" stop-opacity=".95"/><stop offset="18%" stop-color="#222" stop-opacity=".90"/><stop offset="20%" stop-color="#111" stop-opacity=".92"/><stop offset="45%" stop-color="#333" stop-opacity=".85"/><stop offset="47%" stop-color="#111" stop-opacity=".90"/><stop offset="68%" stop-color="#2a2a2a" stop-opacity=".85"/><stop offset="70%" stop-color="#0a0a0a" stop-opacity=".92"/><stop offset="100%" stop-color="#000" stop-opacity=".95"/></radialGradient><radialGradient id="vl" cx="38%" cy="32%" r="62%"><stop offset="0%" stop-color="#fff8e0" stop-opacity=".55"/><stop offset="50%" stop-color="#d7a843" stop-opacity=".18"/><stop offset="100%" stop-color="transparent" stop-opacity="0"/></radialGradient><radialGradient id="vlb" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f6d47a" stop-opacity=".95"/><stop offset="60%" stop-color="#d7a843" stop-opacity=".80"/><stop offset="100%" stop-color="#7a4c10" stop-opacity=".65"/></radialGradient></defs><rect width="400" height="140" fill="#060606"/><circle cx="310" cy="70" r="66" fill="url(#vn)"/><circle cx="310" cy="70" r="66" fill="url(#vl)"/><circle cx="310" cy="70" r="18" fill="url(#vlb)"/><circle cx="310" cy="70" r="6" fill="#0a0a0a"/><circle cx="310" cy="70" r="2.5" fill="#f6d47a" opacity=".90"/><circle cx="310" cy="70" r="22" fill="none" stroke="#888" stroke-width=".5" opacity=".30"/><circle cx="310" cy="70" r="30" fill="none" stroke="#666" stroke-width=".5" opacity=".25"/><circle cx="310" cy="70" r="42" fill="none" stroke="#555" stroke-width=".5" opacity=".20"/><circle cx="310" cy="70" r="56" fill="none" stroke="#444" stroke-width=".5" opacity=".18"/></svg>`
+  };
+  return S[id]||S['cv-drops'];
+}
+
+function inlineArt(type, pfx){
+  const raw=artSvg(type);
+  const p=pfx||('a'+Math.random().toString(36).slice(2,7));
+  return raw
+    .replace(/\bid="([^"]+)"/g,(_,n)=>`id="${p}_${n}"`)
+    .replace(/url\(#([^)]+)\)/g,(_,n)=>`url(#${p}_${n})`)
+    .replace(/<svg /,`<svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" `);
+}
+function cardArtType(s,i){
+  const arts=ART_DEFS.map(a=>a.id);
+  const basis=(s.title||'').split('').reduce((a,c)=>a+c.charCodeAt(0),0)+i;
+  return arts[basis%arts.length];
+}
+
+/* ── Cover defs (kept for guessCover / nav icons) ─── */
+const COVER_NAME_MAP={'cv-drops':'Su Damlacıkları','cv-meteor':'Meteor Yağmuru','cv-storm':'Fırtına Bulutu','cv-galaxy':'Galaksi','cv-floral':'Altın Arabesk','cv-eq':'EQ Barları','cv-waves':'Altın Dalgalar','cv-crystal':'Kristal','cv-ember':'Kor Ateş','cv-circuit':'Devre Kartı','cv-aurora':'Kuzey Işıkları','cv-vinyl':'Vinil Plak'};
+
+function guessCover(name){
+  const n=String(name).toLocaleLowerCase('tr');
+  if(n.includes('slow')||n.includes('duygusal')) return 'cv-waves';
+  if(n.includes('hareket')||n.includes('oyun')||n.includes('düğün')) return 'cv-eq';
+  if(n.includes('arabesk')||n.includes('fant')) return 'cv-floral';
+  if(n.includes('türk')||n.includes('thm')||n.includes('tsm')) return 'cv-vinyl';
+  if(n.includes('pop')||n.includes('rock')||n.includes('özgün')) return 'cv-meteor';
+  if(n.includes('slow')) return 'cv-aurora';
+  return 'cv-galaxy';
+}
+
+function premiumCategoryIcon(name=''){
+  const n=String(name).toLocaleLowerCase('tr');
+  let p='M18 11h6v27c0 5-4 9-10 8-5-.8-8-5-6-9 2-4 7-5 10-3V11Z';
+  if(n.includes('slow')) p='M12 20c8-8 19-8 27 0s19 8 27 0';
+  else if(n.includes('hareket')||n.includes('oyun')||n.includes('düğün')) p='M14 45c9-21 22-23 33-5 4 6 8 8 12 5M17 28h8m7-10h8m7 10h8';
+  else if(n.includes('arabesk')||n.includes('fant')) p='M16 46c17-4 11-25 28-30-5 11 8 18 1 30M45 19c8 2 11 9 8 16';
+  else if(n.includes('türk')||n.includes('thm')||n.includes('tsm')) p='M18 43c10-22 26-22 36 0M23 34c7-11 19-11 26 0M31 22h10';
+  else if(n.includes('pop')||n.includes('rock')||n.includes('özgün')) p='M14 44h6V25h-6v19Zm15 0h6V17h-6v27Zm15 0h6V30h-6v14Zm15 0h6V12h-6v32Z';
+  const uid2=Math.random().toString(36).slice(2,6);
+  return `<svg viewBox="0 0 72 72" width="17" height="17" fill="none"><defs><linearGradient id="ci${uid2}" x1="8" y1="8" x2="62" y2="62"><stop stop-color="#fff7c7"/><stop offset=".55" stop-color="#d7a843"/><stop offset="1" stop-color="#7a4c10"/></linearGradient></defs><path d="${p}" stroke="url(#ci${uid2})" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+/* ── Storage ──────────────────────────────────── */
+let storageWarning='', triedLegacyCleanup=false;
+function safeGet(k){try{return window.localStorage?localStorage.getItem(k):null;}catch(e){storageWarning='Hafızaya erişilemedi.';return null;}}
+function safeSet(k,v){try{if(window.localStorage)localStorage.setItem(k,v);storageWarning='';return true;}catch(e){if(!triedLegacyCleanup){triedLegacyCleanup=true;removeLegacyKeys();try{if(window.localStorage)localStorage.setItem(k,v);storageWarning='';return true;}catch(e2){}}storageWarning='Tarayıcı hafızası dolu veya kapalı.';return false;}}
+function removeLegacyKeys(){try{LEGACY_KEYS.forEach(k=>localStorage.removeItem(k));for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i)||'';if(/^rep_|^repertuar_|hakoru|repertuar/i.test(k))localStorage.removeItem(k);}return true;}catch(e){return false;}}
+function estimateSize(){try{let t=0;for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i)||'';const v=localStorage.getItem(k)||'';t+=k.length+v.length;}return Math.round(t/1024);}catch(e){return 0;}}
+function clearAll(){removeLegacyKeys();try{localStorage.removeItem(STORAGE_KEY);}catch(e){}db=defaultData();state.view='home';state.categoryId=null;state.search='';storageWarning='';safeSet(STORAGE_KEY,JSON.stringify(db));render();toast('Repertuar sıfırlandı');}
+function clearLegacy(){removeLegacyKeys();storageWarning='';saveData();render();toast('Eski kayıtlar temizlendi');}
+
+/* ── Utils ────────────────────────────────────── */
+const esc=s=>String(s??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const toast=msg=>{const el=document.getElementById('toast');el.textContent=msg;el.classList.remove('translate-y-20','opacity-0');setTimeout(()=>el.classList.add('translate-y-20','opacity-0'),2400);};
+const normStyles=v=>{if(Array.isArray(v))return v.map(x=>String(x).trim()).filter(Boolean);if(!v)return[];return String(v).split(/[;,|\/]+/).map(x=>x.trim()).filter(Boolean);};
+
+/* ── Default data ─────────────────────────────── */
+function defaultData(){
+  const cats=['Arabesk','Özgün','Türkü','Pop','Rock','Slow','Oyun Havası','TSM','THM','Düğün'].map((name,i)=>({id:uid(),name,cover:guessCover(name),order:i}));
+  const cat=n=>cats.find(c=>c.name===n)?.id||cats[0].id;
+  const songs=[
+    {title:'Ah Bir Ataş Ver',artist:'Anonim',categoryId:cat('Türkü'),bpm:'92',measure:'4/4',key:'Am',styles:['Türkü Soft','Slow Rock'],lyrics:'Ah bir ataş ver cigaramı yakayım\nSen sallan gel ben boyuna bakayım',favorite:true},
+    {title:'İntizar',artist:'Ferdi Tayfur',categoryId:cat('Arabesk'),bpm:'78',measure:'4/4',key:'Dm',styles:['Arabesk Slow','Damar'],lyrics:'Bu benim kaderimse\nBen razıyım çileye',favorite:false},
+    {title:'Yalan',artist:'Sezen Aksu',categoryId:cat('Pop'),bpm:'96',measure:'4/4',key:'Gm',styles:['Pop Ballad'],lyrics:'Gözlerimden anla\nKalbimden anla',favorite:false},
+    {title:'Uzun İnce Bir Yoldayım',artist:'Aşık Veysel',categoryId:cat('THM'),bpm:'82',measure:'4/4',key:'Am',styles:['THM','Bağlama'],lyrics:'Uzun ince bir yoldayım\nGidiyorum gündüz gece',favorite:true},
+    {title:'Bir Derdim Var',artist:'Mor ve Ötesi',categoryId:cat('Rock'),bpm:'104',measure:'4/4',key:'Bm',styles:['Rock Ballad'],lyrics:'Bir derdim var artık\nTutamam içimde',favorite:false},
+    {title:'Hicaz Taksim',artist:'Enstrümantal',categoryId:cat('TSM'),bpm:'',measure:'Serbest',key:'Hicaz',styles:['TSM','Serbest'],lyrics:'',favorite:false}
+  ].map((s,i)=>({...s,id:uid(),createdAt:now(),order:i,youtube:'',karaoke:'',notes:''}));
+  return {version:3,categories:cats,songs,styles:['Türkü Soft','Slow Rock','Arabesk Slow','Damar','Pop Ballad','Rock Ballad','THM','Bağlama','TSM','Serbest'],settings:{viewMode:'card',cardSize:'medium',listScale:1,stageScale:1.15,sort:'manual'},activeView:'home',activeCategoryId:null};
+}
+
+/* ── normalizeDb (JSON import compatibility) ─── */
+function normalizeDb(data){
+  const base=defaultData(),input=data&&typeof data==='object'?data:base;
+  const oldSongs=Array.isArray(input.db)?input.db:null;
+  const rawSongs=Array.isArray(input.songs)?input.songs:(oldSongs||[]);
+  const rawSections=input.sections&&typeof input.sections==='object'?input.sections:null;
+  const rawCats=Array.isArray(input.categories)?input.categories:(rawSections&&Array.isArray(rawSections.categories)?rawSections.categories:[]);
+  let categories=rawCats.map((c,i)=>({id:c.id||uid(),name:c.name||c.title||c.autoGenre||c.category||'Kategori',cover:c.cover||guessCover(c.name||c.title||c.autoGenre||'Diğer'),order:Number.isFinite(+c.order)?+c.order:i,_legacy:c.autoGenre||c.title||c.name||''}));
+  const catNames=new Set(categories.map(c=>String(c.name||'').trim()).filter(Boolean));
+  rawSongs.forEach(s=>{const nm=s.category||s.genre||s.tur||s.type||'Diğer';if(String(nm||'').trim())catNames.add(String(nm).trim());});
+  if(!catNames.size)base.categories.forEach(c=>catNames.add(c.name));
+  [...catNames].forEach(name=>{if(!categories.some(c=>c.name.toLocaleLowerCase('tr')===name.toLocaleLowerCase('tr')||String(c._legacy||'').toLocaleLowerCase('tr')===name.toLocaleLowerCase('tr'))){categories.push({id:uid(),name,cover:guessCover(name),order:categories.length,_legacy:name});}});
+  const findCat=name=>{const n=String(name||'').trim().toLocaleLowerCase('tr');if(!n)return categories[0]?.id||null;let c=categories.find(x=>String(x.name||'').toLocaleLowerCase('tr')===n||String(x._legacy||'').toLocaleLowerCase('tr')===n);if(!c){c={id:uid(),name:String(name).trim(),cover:guessCover(String(name)),order:categories.length,_legacy:String(name).trim()};categories.push(c);}return c.id;};
+  const songs=rawSongs.map((s,i)=>({id:s.id||uid(),title:s.title||s.name||s.songName||s.parcaAdi||s.parçaAdi||s.sarkiAdi||s['Şarkı Adı']||'İsimsiz',artist:s.artist||s.singer||s.solist||s.sanatci||s.sanatçı||s['Sanatçı']||'',categoryId:s.categoryId||findCat(s.category||s.genre||s.tur||s.type||s['Kategori']||'Diğer'),bpm:s.bpm||s.tempo||s.Tempo||'',measure:s.measure||s.olcu||s.ölçü||s.meter||'',key:s.key||s.ton||s.chord||s.akor||'',styles:normStyles(s.styles||s.style),lyrics:s.lyrics||s.sozler||s.sözler||s.words||'',youtube:s.youtube||s.youtubeUrl||'',karaoke:s.karaoke||s.karaokeUrl||'',notes:s.notes||s.notlar||s.note||s.chordDetay||'',favorite:!!(s.favorite||s.fav),createdAt:s.createdAt||s.created||now(),order:Number.isFinite(+s.order)?+s.order:i}));
+  const styleSet=new Set((Array.isArray(input.styles)?input.styles:[]).map(String).filter(Boolean));
+  songs.forEach(s=>s.styles.forEach(x=>styleSet.add(x)));
+  const settings=input.settings||{};
+  return {version:3,categories:categories.map(({_legacy,...c})=>c),songs,styles:[...styleSet].sort((a,b)=>a.localeCompare(b,'tr')),settings:{viewMode:settings.viewMode||'card',cardSize:settings.cardSize||'medium',listScale:Number(settings.listScale||1),stageScale:Number(settings.stageScale||1.15),sort:settings.sort||'manual'},activeView:input.activeView||'home',activeCategoryId:input.activeCategoryId||null};
+}
+
+function loadData(){try{const raw=safeGet(STORAGE_KEY);if(raw)return normalizeDb(JSON.parse(raw));}catch(e){console.warn('Kayıt okunamadı:',e);storageWarning='Eski kayıt okunamadı; varsayılan örnek repertuar açıldı.';}const d=defaultData();safeSet(STORAGE_KEY,JSON.stringify(d));return d;}
+function saveData(){if(!db.settings)db.settings={};db.settings.viewMode=db.settings.viewMode||'card';db.settings.cardSize=db.settings.cardSize||'medium';db.settings.listScale=db.settings.listScale||1;db.settings.stageScale=db.settings.stageScale||1.15;db.settings.sort=db.settings.sort||'manual';db.activeView=state.view;db.activeCategoryId=state.categoryId;safeSet(STORAGE_KEY,JSON.stringify(db));}
+
+let db=loadData();
+let state={view:db.activeView||'home',categoryId:db.activeCategoryId||null,search:'',selectedSongId:null,stageSongId:null,editingStyles:[],selectedCover:'cv-drops'};
+
+/* ── Helpers ────────────────────────────────── */
+const songsByCat=id=>db.songs.filter(s=>s.categoryId===id);
+const findCatByName=(name,cats=db.categories)=>{if(!name)return null;const n=String(name).trim().toLocaleLowerCase('tr');return cats.find(c=>c.name.toLocaleLowerCase('tr')===n)?.id||null;};
+function ensureCat(name){const clean=(name||'Diğer').trim()||'Diğer';let id=findCatByName(clean);if(id)return id;const cat={id:uid(),name:clean,cover:guessCover(clean),order:db.categories.length};db.categories.push(cat);return cat.id;}
+function getSorted(songs){const arr=songs.slice();const s=db.settings.sort||'manual';if(s==='az')arr.sort((a,b)=>a.title.localeCompare(b.title,'tr'));else if(s==='artist')arr.sort((a,b)=>(a.artist||'').localeCompare(b.artist||'','tr')||a.title.localeCompare(b.title,'tr'));else arr.sort((a,b)=>(a.order||0)-(b.order||0));return arr;}
+const openCat=id=>{state.view='category';state.categoryId=id;saveData();render();};
+const selSong=id=>{state.selectedSongId=id;render();};
+const clearSearch=()=>{state.search='';document.getElementById('searchInput').value='';document.getElementById('clearSearchBtn').classList.add('hidden');render();};
+const toggleSidebar=()=>document.getElementById('sidebar').classList.toggle('open');
+const closeSidebar=()=>document.getElementById('sidebar').classList.remove('open');
+function changeListScale(d){db.settings.listScale=Math.max(.75,Math.min(1.45,(+db.settings.listScale||1)+d));document.documentElement.style.setProperty('--list-scale',db.settings.listScale);saveData();render();}
+function setSort(s){db.settings.sort=s;saveData();render();}
+
+/* ── Nav ──────────────────────────────────────── */
+function renderNav(){
+  const nav=document.getElementById('navArea');nav.innerHTML='';
+  const items=[['home','Ana Sayfa','home'],['categories','Kategoriler','grid'],['favorites','Favoriler','star'],['recent','Son Eklenenler','music']];
+  const lbl=document.createElement('div');lbl.className='text-[10px] font-black tracking-[.16em] uppercase text-slate-600 px-3 pt-1 pb-1';lbl.textContent='MENÜ';nav.appendChild(lbl);
+  items.forEach(([view,name,icon])=>{const b=document.createElement('button');b.className='nav-btn '+(state.view===view?'active':'');b.innerHTML=(IC[icon]||'')+`<span>${name}</span>`;b.onclick=()=>{state.view=view;state.categoryId=null;saveData();closeSidebar();render();};nav.appendChild(b);});
+  const cl=document.createElement('div');cl.className='text-[10px] font-black tracking-[.16em] uppercase text-slate-600 px-3 pt-4 pb-1';cl.textContent='KATEGORİLER';nav.appendChild(cl);
+  db.categories.slice().sort((a,b)=>a.order-b.order).forEach(cat=>{const b=document.createElement('button');b.className='nav-btn cat-nav-btn '+(state.view==='category'&&state.categoryId===cat.id?'active':'');b.style.setProperty('--cat-pat',`url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40'><rect width='100' height='40' fill='%23000'/></svg>`)}")`);b.innerHTML=`<span class="cat-ico">${premiumCategoryIcon(cat.name)}</span><span class="truncate relative z-[1] text-[12px]">${esc(cat.name)}</span><span class="ml-auto cat-count">${songsByCat(cat.id).length}</span>`;b.onclick=()=>{state.view='category';state.categoryId=cat.id;saveData();closeSidebar();render();};nav.appendChild(b);});
+}
+
+/* ── Render ───────────────────────────────────── */
+function render(){
+  renderNav();
+  const c=document.getElementById('content');if(!c)return;
+  if(state.search.trim())renderSearch(c);
+  else if(state.view==='home')renderHome(c);
+  else if(state.view==='favorites')renderPage(c,'Favoriler',getSorted(db.songs.filter(s=>s.favorite)),'Yıldızladığın şarkılar');
+  else if(state.view==='recent')renderPage(c,'Son Eklenenler',db.songs.slice().sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||''))).slice(0,80),'En yeni eklenen');
+  else if(state.view==='categories')renderCategoriesPage(c);
+  else if(state.view==='category'){const cat=db.categories.find(x=>x.id===state.categoryId);renderPage(c,cat?.name||'Kategori',getSorted(songsByCat(state.categoryId)),`${songsByCat(state.categoryId).length} şarkı`,cat);}
+  if(storageWarning){const kb=estimateSize();c.insertAdjacentHTML('afterbegin',`<div class="mb-4 rounded-xl p-4 text-sm" style="border:1px solid rgba(215,168,67,.25);background:rgba(215,168,67,.07);color:rgba(246,212,122,.9);"><b>Hafıza uyarısı:</b> ${esc(storageWarning)} ${kb?`(~${kb} KB)`:''}<div class="mt-3 flex flex-wrap gap-2"><button class="btn btn-danger !h-8" onclick="clearLegacy()">Eski hafızayı temizle</button><button class="btn btn-danger !h-8" onclick="clearAll()">Uygulamayı sıfırla</button></div></div>`);}
+}
+function pageHeader(title,sub,extra=''){return `<div class="flex flex-wrap items-start justify-between gap-4 mb-5"><div><h1 class="text-2xl lg:text-4xl font-black tracking-tight" style="color:#fff8df;">${esc(title)}</h1><div class="text-slate-500 font-bold mt-1 text-sm">${esc(sub||'')}</div></div>${extra||''}</div>`;}
+function renderHome(c){c.innerHTML=pageHeader('Şarkılarım',`${db.songs.length} şarkı · ${db.categories.length} kategori · ${db.songs.filter(s=>s.favorite).length} favori`,`<div class="flex gap-2 flex-wrap"><button class="btn btn-primary" onclick="openSongModal()">${IC.plus} Yeni Şarkı</button><button class="btn" onclick="openImportExport('import')">Import / Export</button></div>`)+listToolbar()+songCollHtml(getSorted(db.songs),'Henüz şarkı yok.');}
+function renderPage(c,title,songs,sub,cat=null){const ed=cat?`<button class="btn" onclick="openCategoryModal('${cat.id}')">Kategori Düzenle</button>`:'';c.innerHTML=pageHeader(title,sub,`<div class="flex gap-2 flex-wrap">${ed}<button class="btn btn-primary" onclick="openSongModal(null,'${cat?.id||''}')">${IC.plus} Şarkı Ekle</button></div>`)+listToolbar()+songCollHtml(songs,'Bu listede şarkı yok.');}
+function renderSearch(c){const q=state.search.trim().toLocaleLowerCase('tr');const songs=db.songs.filter(s=>[s.title,s.artist,s.lyrics].some(v=>String(v||'').toLocaleLowerCase('tr').includes(q)));c.innerHTML=pageHeader(`Arama: ${state.search}`,`${songs.length} sonuç`,`<button class="btn" onclick="clearSearch()">Temizle</button>`)+listToolbar()+songCollHtml(songs,'Arama sonucu bulunamadı.');}
+function renderCategoriesPage(c){c.innerHTML=pageHeader('Kategoriler','Premium kategori kartları',`<button class="btn btn-primary" onclick="openCategoryModal()">${IC.plus} Ekle</button>`)+`<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">${db.categories.slice().sort((a,b)=>a.order-b.order).map(catCard).join('')}</div>`;}
+
+/* ── Toolbar ────────────────────────────────── */
+function listToolbar(){
+  const view=db.settings.viewMode||'card',size=db.settings.cardSize||'medium',isRow=view==='row';
+  return `<div class="premium-toolbar"><div class="flex items-center gap-2 flex-wrap"><div class="segmented"><button class="seg-btn ${view==='row'?'active':''}" onclick="setViewMode('row')">${IC.list} Satır</button><button class="seg-btn ${view==='card'?'active':''}" onclick="setViewMode('card')">${IC.grid} Kutu</button></div>${view==='card'?`<div class="segmented"><button class="size-btn ${size==='small'?'active':''}" onclick="setCardSize('small')">Küçük</button><button class="size-btn ${size==='medium'?'active':''}" onclick="setCardSize('medium')">Orta</button><button class="size-btn ${size==='large'?'active':''}" onclick="setCardSize('large')">Büyük</button></div>`:''}${isRow?`<div class="segmented"><button class="size-btn" onclick="changeListScale(-.08)">A−</button><button class="size-btn" onclick="changeListScale(.08)">A+</button><button class="size-btn ${db.settings.sort==='manual'?'active':''}" onclick="setSort('manual')">Manuel</button><button class="size-btn ${db.settings.sort==='az'?'active':''}" onclick="setSort('az')">A-Z</button><button class="size-btn ${db.settings.sort==='artist'?'active':''}" onclick="setSort('artist')">Sanatçı</button></div>`:''}</div><div class="text-[11px] font-black text-slate-500">${isRow?'Sürükle-bırak: kategori + manuel':'Kutu vitrin modu'}</div></div>`;
+}
+function setViewMode(m){db.settings.viewMode=m==='row'?'row':'card';saveData();render();}
+function setCardSize(s){db.settings.cardSize=['small','medium','large'].includes(s)?s:'medium';saveData();render();}
+
+/* ── Song collection ─────────────────────────── */
+function songCollHtml(songs,empty){return(db.settings.viewMode||'card')==='row'?songListHtml(songs,empty):songGridHtml(songs,empty);}
+function songListHtml(songs,empty){if(!songs.length)return`<div class="rounded-xl p-14 text-center text-slate-500 font-black" style="border:1px solid rgba(215,168,67,.12);background:rgba(215,168,67,.04);">${empty}</div>`;const hint=canDrag()?'<div class="mb-3 text-xs font-black" style="color:rgba(215,168,67,.60);">Manuel sıralama açık — satırları sürükleyebilirsin.</div>':'';return`${hint}<div class="space-y-2">${songs.map((s,i)=>songRow(s,i)).join('')}</div>`;}
+function songGridHtml(songs,empty){if(!songs.length)return`<div class="rounded-xl p-14 text-center text-slate-500 font-black" style="border:1px solid rgba(215,168,67,.12);background:rgba(215,168,67,.04);">${empty}</div>`;const size=db.settings.cardSize||'medium',sz=size==='small'?'size-small':size==='large'?'size-large':'size-medium';return`<div class="card-grid ${sz}">${songs.map((s,i)=>songCard(s,i,size)).join('')}</div>`;}
+function canDrag(){return(db.settings.viewMode||'card')==='row'&&state.view==='category'&&!state.search.trim()&&db.settings.sort==='manual';}
+
+/* ── Style helpers ────────────────────────────── */
+function compactStyles(styles,max=3){const arr=(styles||[]).filter(Boolean).slice(0,max);if(!arr.length)return`<span class="style-mini">—</span>`;return arr.map((st,idx)=>`<span class="style-mini ${idx===0?'primary':''}" title="${esc(st)}">${esc(st)}</span>`).join('');}
+function styleBlocksHtml(styles){const arr=(styles||[]).filter(Boolean);if(!arr.length)return`<div class="info-block style-token style-empty"><span class="info-label">Style</span><span class="info-val">—</span></div>`;return arr.map(st=>`<div class="info-block style-token" title="${esc(st)}"><span class="info-label">Style</span><span class="info-val">${esc(st)}</span></div>`).join('');}
+
+/* ═══════════════════════════════════════════════
+   SONG ROW — v3.1
+   [01][drag?] | [Stage] | [Note + Şarkı/Sanatçı] | [BPM|Ölçü|Ton] | [Style] | [✏️ ⭐ ▶ 🎤]
+   ═══════════════════════════════════════════════ */
+function songRow(s,i){
+  const drag=canDrag();
+  const dragA=drag?`draggable="true" ondragstart="dragStart(event,'${s.id}')" ondragover="dragOver(event,'${s.id}')" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'${s.id}')" ondragend="dragEnd(event)"`:'' ;
+  return `<div class="song-row ${state.selectedSongId===s.id?'selected':''}" ${dragA} onclick="selSong('${s.id}')">
+<div class="row-inner">
+  <div class="row-num">${String(i+1).padStart(2,'0')}${drag?`<span class="drag-handle" title="Sürükle">☰</span>`:''}</div>
+  <button class="row-stage-btn" onclick="event.stopPropagation();openStage('${s.id}')">${IC.stage} Stage</button>
+  <div class="row-title-block">
+    <div class="song-title">${esc(s.title)}</div>
+    <div class="song-artist">${esc(s.artist||'Sanatçı yok')}</div>
+  </div>
+  <div class="row-meta hidden md:flex">
+    <div class="info-block bpm-block"><span class="info-label">BPM</span><span class="info-val">${esc(s.bpm||'—')}</span></div>
+    <div class="info-block"><span class="info-label">Ölçü</span><span class="info-val">${esc(s.measure||'—')}</span></div>
+    <div class="info-block"><span class="info-label">Ton</span><span class="info-val">${esc(s.key||'—')}</span></div>
+  </div>
+  <div class="row-styles hidden xl:flex">${styleBlocksHtml(s.styles||[])}</div>
+  <div class="row-actions">
+    <button class="icon-btn" title="Düzenle" onclick="event.stopPropagation();openSongModal('${s.id}')">${IC.edit}</button>
+    <button class="icon-btn ${s.favorite?'on':''}" title="Favori" onclick="event.stopPropagation();toggleFav('${s.id}')">${IC.star}</button>
+    <button class="icon-btn" title="YouTube" onclick="event.stopPropagation();openYT('${s.id}',false)">${IC.play}</button>
+    <button class="icon-btn" title="Karaoke" onclick="event.stopPropagation();openYT('${s.id}',true)">${IC.mic}</button>
+  </div>
+</div>
+<div class="row-mobile-meta md:hidden">
+  <div class="info-block bpm-block"><span class="info-label">BPM</span><span class="info-val">${esc(s.bpm||'—')}</span></div>
+  <div class="info-block"><span class="info-label">Ölçü</span><span class="info-val">${esc(s.measure||'—')}</span></div>
+  <div class="info-block"><span class="info-label">Ton</span><span class="info-val">${esc(s.key||'—')}</span></div>
+  ${styleBlocksHtml(s.styles||[])}
+</div>
+</div>`;
+}
+
+/* ═══════════════════════════════════════════════
+   SONG CARD — v3.1
+   Zone1: cover-zone (SVG art bg + note icon + edit/more)
+   Zone2: card-body  (title/artist + meta cells + styles)
+   Zone3: card-actions (edit ⭐ ▶ 🎤 [Stage])
+   ═══════════════════════════════════════════════ */
+function songCard(s,i,size='medium'){
+  const artType=cardArtType(s,i);
+  const pfx='c'+i+'_'+(s.id||'').slice(-4);
+  const artInline=inlineArt(artType,pfx);
+  const sizeCls=size==='small'?'size-small-card':size==='large'?'size-large-card':'';
+  const sel=state.selectedSongId===s.id?' selected':'';
+  return `<article class="song-card ${sizeCls}${sel}" onclick="selSong('${s.id}')">
+<div class="cover-zone">
+  <div class="cover-art" aria-hidden="true">${artInline}</div>
+  <div class="cover-zone-overlay" style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(2,10,22,.88));z-index:1;pointer-events:none;"></div>
+  <div class="cover-icon" style="position:relative;z-index:2;">${NOTE_SVG}</div>
+  <div class="cover-btns" style="z-index:3;">
+    <button class="cover-btn" title="Düzenle" onclick="event.stopPropagation();openSongModal('${s.id}')">${IC.edit}</button>
+    <button class="cover-btn" title="Seçenekler" onclick="event.stopPropagation();openSongModal('${s.id}')">•••</button>
+  </div>
+</div>
+<div class="card-body">
+  <div>
+    <h3 class="card-title">${esc(s.title)}</h3>
+    <div class="card-artist">${esc(s.artist||'Sanatçı yok')}</div>
+  </div>
+  <div class="zone-divider"></div>
+  <div class="card-meta-grid">
+    <div class="card-meta-cell bpm-cell"><div class="card-meta-label">BPM</div><div class="card-meta-value">${esc(s.bpm||'—')}</div></div>
+    <div class="card-meta-cell"><div class="card-meta-label">Ölçü</div><div class="card-meta-value">${esc(s.measure||'—')}</div></div>
+    <div class="card-meta-cell"><div class="card-meta-label">Ton</div><div class="card-meta-value">${esc(s.key||'—')}</div></div>
+  </div>
+  <div class="style-tags">${compactStyles(s.styles||[],size==='small'?2:3)}</div>
+</div>
+<div class="card-actions">
+  <button class="card-action" title="Düzenle" onclick="event.stopPropagation();openSongModal('${s.id}')">${IC.edit}</button>
+  <button class="card-action ${s.favorite?'on':''}" title="Favori" onclick="event.stopPropagation();toggleFav('${s.id}')">${IC.star}</button>
+  <button class="card-action" title="YouTube" onclick="event.stopPropagation();openYT('${s.id}',false)">${IC.play}</button>
+  <button class="card-action" title="Karaoke" onclick="event.stopPropagation();openYT('${s.id}',true)">${IC.mic}</button>
+  <button class="card-stage" onclick="event.stopPropagation();openStage('${s.id}')">${IC.stage} Stage</button>
+</div>
+</article>`;
+}
+
+/* ── Category card ─────────────────────────── */
+function catCard(cat){
+  const count=songsByCat(cat.id).length;
+  const pfx='k_'+(cat.id||'').slice(-6);
+  const artInline=inlineArt(cat.cover||'cv-galaxy',pfx);
+  return `<div class="cat-card cursor-pointer" onclick="openCat('${cat.id}')">
+<div class="absolute inset-0 z-0 overflow-hidden" style="opacity:.55;">${artInline}</div>
+<div class="absolute inset-0 z-[1]" style="background:linear-gradient(to bottom,rgba(0,5,14,.30) 0%,rgba(0,5,14,.72) 60%,rgba(0,5,14,.92) 100%);"></div>
+<div class="relative z-[2] h-full min-h-[188px] p-5 flex flex-col">
+  <div class="flex items-start justify-between gap-3">
+    <div class="cat-card-icon">${premiumCategoryIcon(cat.name)}</div>
+    <button class="icon-btn !bg-black/30 !backdrop-blur-md" onclick="event.stopPropagation();openCategoryModal('${cat.id}')" title="Düzenle">${IC.edit}</button>
+  </div>
+  <div class="mt-auto">
+    <div class="cat-card-title text-xl font-black truncate mt-3">${esc(cat.name)}</div>
+    <div class="text-sm font-bold text-slate-400 mt-1">${count} şarkı</div>
+  </div>
+</div>
+</div>`;
+}
+
+/* ── Drag & Drop ─────────────────────────────── */
+let draggedId=null;
+function dragStart(e,id){draggedId=id;e.stopPropagation();e.dataTransfer.effectAllowed='move';try{e.dataTransfer.setData('text/plain',id);}catch(_){}e.currentTarget.classList.add('dragging');}
+function dragOver(e,id){if(!draggedId||draggedId===id||!canDrag())return;e.preventDefault();e.dataTransfer.dropEffect='move';e.currentTarget.classList.add('drag-over');}
+function dragLeave(e){e.currentTarget.classList.remove('drag-over');}
+function dragEnd(e){e.currentTarget.classList.remove('dragging','drag-over');document.querySelectorAll('.song-row.drag-over').forEach(x=>x.classList.remove('drag-over'));}
+function dragDrop(e,targetId){e.preventDefault();e.stopPropagation();document.querySelectorAll('.song-row.drag-over').forEach(x=>x.classList.remove('drag-over'));const sourceId=draggedId||(e.dataTransfer&&e.dataTransfer.getData('text/plain'));draggedId=null;if(!sourceId||sourceId===targetId||!canDrag())return;const list=getSorted(songsByCat(state.categoryId));const from=list.findIndex(s=>s.id===sourceId),to=list.findIndex(s=>s.id===targetId);if(from<0||to<0)return;const[moved]=list.splice(from,1);list.splice(to,0,moved);list.forEach((song,idx)=>{song.order=idx;});db.settings.sort='manual';saveData();render();toast('Sıralama kaydedildi');}
+
+/* ── Song CRUD ──────────────────────────────── */
+const toggleFav=id=>{const s=db.songs.find(x=>x.id===id);if(!s)return;s.favorite=!s.favorite;saveData();render();};
+const openYT=(id,karaoke=false)=>{const s=db.songs.find(x=>x.id===id);if(!s){toast('Şarkı bulunamadı');return;}const q=[s.artist||'',s.title||'',karaoke?'karaoke':''].filter(Boolean).join(' ').trim();window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(q),'_blank');};
+
+function openSongModal(id=null,categoryId=''){
+  fillCatOptions();fillStyleList();
+  const s=id?db.songs.find(x=>x.id===id):null;
+  document.getElementById('songModalTitle').textContent=s?'Şarkı Düzenle':'Şarkı Ekle';
+  document.getElementById('deleteSongBtn').classList.toggle('hidden',!s);
+  document.getElementById('songId').value=s?.id||'';
+  document.getElementById('songTitle').value=s?.title||'';
+  document.getElementById('songArtist').value=s?.artist||'';
+  document.getElementById('songCategory').value=s?.categoryId||categoryId||state.categoryId||db.categories[0]?.id||'';
+  document.getElementById('songKey').value=s?.key||'';
+  document.getElementById('songBpm').value=s?.bpm||'';
+  document.getElementById('songMeasure').value=s?.measure||'';
+  document.getElementById('songLyrics').value=s?.lyrics||'';
+  document.getElementById('songNotes').value=s?.notes||'';
+  state.editingStyles=[...(s?.styles||[])];
+  document.getElementById('styleInput').value='';
+  renderStyleChips();showModal('songModal');
+}
+function fillCatOptions(){const sel=document.getElementById('songCategory');sel.innerHTML=db.categories.slice().sort((a,b)=>a.order-b.order).map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');}
+function fillStyleList(){document.getElementById('stylesDatalist').innerHTML=db.styles.map(s=>`<option value="${esc(s)}"></option>`).join('');}
+function styleInputKey(e){if(e.key==='Enter'){e.preventDefault();addStyle();}}
+function addStyle(){const inp=document.getElementById('styleInput');const v=inp.value.trim();if(!v)return;if(!state.editingStyles.some(x=>x.toLocaleLowerCase('tr')===v.toLocaleLowerCase('tr')))state.editingStyles.push(v);if(!db.styles.some(x=>x.toLocaleLowerCase('tr')===v.toLocaleLowerCase('tr')))db.styles.push(v);inp.value='';renderStyleChips();fillStyleList();}
+function renderStyleChips(){document.getElementById('styleChips').innerHTML=state.editingStyles.map((s,i)=>`<span class="chip">${esc(s)} <button onclick="removeStyle(${i})">×</button></span>`).join('')||'<span class="text-sm text-slate-500 font-bold">Henüz style eklenmedi.</span>';}
+function removeStyle(i){state.editingStyles.splice(i,1);renderStyleChips();}
+function saveSong(){const id=document.getElementById('songId').value;const title=document.getElementById('songTitle').value.trim();if(!title){toast('Şarkı adı gerekli');return;}const obj={title,artist:document.getElementById('songArtist').value.trim(),categoryId:document.getElementById('songCategory').value,bpm:document.getElementById('songBpm').value.trim(),measure:document.getElementById('songMeasure').value.trim(),key:document.getElementById('songKey').value.trim(),styles:[...state.editingStyles],lyrics:document.getElementById('songLyrics').value,notes:document.getElementById('songNotes').value,youtube:'',karaoke:''};obj.styles.forEach(st=>{if(!db.styles.includes(st))db.styles.push(st);});db.styles.sort((a,b)=>a.localeCompare(b,'tr'));if(id){const s=db.songs.find(x=>x.id===id);Object.assign(s,obj);}else{db.songs.push({...obj,id:uid(),favorite:false,createdAt:now(),order:db.songs.length});}saveData();closeModal('songModal');toast('Şarkı kaydedildi');render();}
+function deleteCurrentSong(){const id=document.getElementById('songId').value;if(!id)return;if(!confirm('Şarkı silinsin mi?'))return;db.songs=db.songs.filter(s=>s.id!==id);saveData();closeModal('songModal');render();}
+
+/* ── Category CRUD ────────────────────────────── */
+function openCategoryModal(id=null){state.selectedCover='cv-drops';const c=id?db.categories.find(x=>x.id===id):null;document.getElementById('categoryModalTitle').textContent=c?'Kategori Düzenle':'Kategori Ekle';document.getElementById('deleteCategoryBtn').classList.toggle('hidden',!c);document.getElementById('categoryId').value=c?.id||'';document.getElementById('categoryName').value=c?.name||'';state.selectedCover=c?.cover||'cv-drops';renderCoverGrid();showModal('categoryModal');}
+function renderCoverGrid(){
+  document.getElementById('selectedCoverName').textContent=COVER_NAME_MAP[state.selectedCover]||'—';
+  document.getElementById('coverGrid').innerHTML=ART_DEFS.map(({id,label})=>{
+    const artSvgInl=inlineArt(id,'grd_'+id.replace('-','_'));
+    const sel=state.selectedCover===id;
+    return `<button onclick="selectCover('${id}')" class="relative rounded-xl overflow-hidden" style="aspect-ratio:16/9;border:${sel?'2px solid rgba(255,248,160,.70)':'1px solid rgba(215,168,67,.20)'};${sel?'box-shadow:0 0 14px rgba(215,168,67,.30);':''}">
+<div style="position:absolute;inset:0;overflow:hidden;">${artSvgInl}</div>
+<div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,5,14,.80));"></div>
+<div style="position:absolute;bottom:5px;left:6px;right:6px;font-size:10px;font-weight:900;color:#f0e8d4;text-shadow:0 1px 3px rgba(0,0,0,.9);">${esc(label)}</div>
+${sel?'<div style="position:absolute;top:5px;right:5px;width:16px;height:16px;border-radius:50%;background:rgba(215,168,67,.90);display:flex;align-items:center;justify-content:center;font-size:10px;">✓</div>':''}
+</button>`;
+  }).join('');
+}
+function selectCover(id){state.selectedCover=id;renderCoverGrid();}
+function saveCategory(){const id=document.getElementById('categoryId').value;const name=document.getElementById('categoryName').value.trim();if(!name){toast('Kategori adı gerekli');return;}if(id){const c=db.categories.find(x=>x.id===id);c.name=name;c.cover=state.selectedCover;}else{db.categories.push({id:uid(),name,cover:state.selectedCover,order:db.categories.length});}saveData();closeModal('categoryModal');render();}
+function deleteCurrentCategory(){const id=document.getElementById('categoryId').value;if(!id)return;const count=songsByCat(id).length;if(count&&!confirm(`${count} şarkı bu kategoride. Silinirse şarkılar Diğer'e taşınır. Devam?`))return;let other=findCatByName('Diğer')||ensureCat('Diğer');db.songs.forEach(s=>{if(s.categoryId===id)s.categoryId=other;});db.categories=db.categories.filter(c=>c.id!==id);if(state.categoryId===id){state.view='home';state.categoryId=null;}saveData();closeModal('categoryModal');render();}
+
+/* ── Bulk ────────────────────────────────────── */
+function openBulkModal(){document.getElementById('bulkText').value='';document.getElementById('bulkResult').textContent='';showModal('bulkModal');}
+function importBulkSongs(){const text=document.getElementById('bulkText').value.trim();if(!text){toast('Metin yok');return;}const rows=text.split(/\r?\n/).map(l=>l.trim()).filter(Boolean).map(l=>l.split(/\t| {2,}|;/).map(x=>x.trim()));const header=rows[0].map(h=>h.toLocaleLowerCase('tr'));const hasHeader=header.some(h=>h.includes('şarkı')||h.includes('sanat')||h.includes('kategori'));const dataRows=hasHeader?rows.slice(1):rows;let added=0,skipped=0;dataRows.forEach(cols=>{const[title,artist,category,bpm,measure,key,style,lyrics,notes]=cols;if(!title){skipped++;return;}const dup=db.songs.some(s=>s.title.toLocaleLowerCase('tr')===title.toLocaleLowerCase('tr')&&(s.artist||'').toLocaleLowerCase('tr')===(artist||'').toLocaleLowerCase('tr'));if(dup){skipped++;return;}const catId=ensureCat(category||'Diğer');const styles=normStyles(style);styles.forEach(st=>{if(!db.styles.includes(st))db.styles.push(st);});db.songs.push({id:uid(),title,artist:artist||'',categoryId:catId,bpm:bpm||'',measure:measure||'',key:key||'',styles,lyrics:lyrics||'',youtube:'',karaoke:'',notes:notes||'',favorite:false,createdAt:now(),order:db.songs.length});added++;});db.styles.sort((a,b)=>a.localeCompare(b,'tr'));saveData();document.getElementById('bulkResult').innerHTML=`<b class="text-emerald-300">${added}</b> şarkı eklendi, <b style="color:rgba(215,168,67,.9)">${skipped}</b> satır atlandı.`;render();}
+
+/* ── Import/Export ────────────────────────────── */
+function openImportExport(mode){showModal('importExportModal');document.getElementById('importResult').textContent=mode==='export'?'Export için JSON Export butonunu kullan.':'JSON veya eski HTML içeriğini yapıştır.';}
+function exportJson(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='repertuar-v3.1-yedek.json';a.click();URL.revokeObjectURL(a.href);}
+function readImportFile(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{document.getElementById('importText').value=r.result;};r.readAsText(f);}
+function importNewJson(){try{const data=JSON.parse(document.getElementById('importText').value);db=normalizeDb(data);saveData();state.view='home';state.categoryId=null;closeModal('importExportModal');toast('JSON yüklendi');render();}catch(e){document.getElementById('importResult').innerHTML='<span style="color:#f87171;font-weight:900;">JSON okunamadı: '+esc(e.message)+'</span>';}}
+function importLegacyData(){const txt=document.getElementById('importText').value;if(!txt.trim()){toast('İçerik yok');return;}let found=null;try{found=JSON.parse(txt.trim());}catch(e){}if(!found){const blocks=[...txt.matchAll(/\{[\s\S]*?"(?:db|songs|categories|sections)"[\s\S]*?\}/g)].map(m=>m[0]).slice(0,20);for(const b of blocks){try{const p=JSON.parse(b);if(p&&(p.db||p.songs||p.categories||p.sections)){found=p;break;}}catch(e){}}}if(!found){const titles=[...txt.matchAll(/(?:parcaAdi|title)\s*:\s*['"]([^'"]+)['"]/g)].map(m=>m[1]);if(titles.length)found={db:titles.map(t=>({parcaAdi:t,solist:'',tur:'Diğer'})),sections:{categories:[{title:'Diğer',autoGenre:'Diğer'}]}};}if(!found){document.getElementById('importResult').innerHTML='<span style="color:#f87171;font-weight:900;">Eski veri bulunamadı. JSON Export alıp dosya seç.</span>';return;}try{db=normalizeDb(found);saveData();state.view='home';state.categoryId=null;state.search='';document.getElementById('searchInput').value='';closeModal('importExportModal');toast(`Dönüştürüldü: ${db.songs.length} şarkı, ${db.categories.length} kategori`);render();}catch(e){document.getElementById('importResult').innerHTML='<span style="color:#f87171;font-weight:900;">Hata: '+esc(e.message)+'</span>';}}
+function resetAllData(){if(!confirm('Tüm veriler sıfırlansın mı?'))return;db=defaultData();state.view='home';state.categoryId=null;saveData();closeModal('importExportModal');render();}
+
+/* ── Style manager ────────────────────────────── */
+function renderStyleManager(){const el=document.getElementById('styleManager');if(!el)return;const styles=(db.styles||[]).slice().sort((a,b)=>a.localeCompare(b,'tr'));el.innerHTML=styles.length?styles.map(st=>`<span class="chip">${esc(st)} <button title="Düzenle" onclick="renameStyle('${encodeURIComponent(st)}')">✎</button><button title="Sil" onclick="delStyle('${encodeURIComponent(st)}')">×</button></span>`).join(''):'<span class="text-sm text-slate-500 font-bold">Kayıtlı style yok.</span>';}
+function renameStyle(enc){const old=decodeURIComponent(enc);const neu=(prompt('Yeni style adı:',old)||'').trim();if(!neu||neu===old)return;db.styles=(db.styles||[]).map(x=>x===old?neu:x);db.styles=[...new Set(db.styles)].sort((a,b)=>a.localeCompare(b,'tr'));db.songs.forEach(s=>{s.styles=(s.styles||[]).map(x=>x===old?neu:x);s.styles=[...new Set(s.styles)];});saveData();renderStyleManager();render();toast('Style güncellendi');}
+function delStyle(enc){const st=decodeURIComponent(enc);if(!confirm(`"${st}" silinsin mi?`))return;db.styles=(db.styles||[]).filter(x=>x!==st);db.songs.forEach(s=>{s.styles=(s.styles||[]).filter(x=>x!==st);});saveData();renderStyleManager();render();toast('Style silindi');}
+
+/* ── Modal helpers ────────────────────────────── */
+function showModal(id){document.getElementById(id).classList.add('show');if(id==='importExportModal')renderStyleManager();}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+window.addEventListener('click',e=>{if(e.target.classList.contains('modal-back'))e.target.classList.remove('show');});
+
+/* ── Stage ────────────────────────────────────── */
+function openStage(id){state.stageSongId=id;renderStage();document.getElementById('stageOverlay').classList.remove('hidden');document.getElementById('stageOverlay').classList.add('flex');}
+function closeStage(){document.getElementById('stageOverlay').classList.add('hidden');document.getElementById('stageOverlay').classList.remove('flex');}
+function stageList(){if(state.search.trim()){const q=state.search.trim().toLocaleLowerCase('tr');return db.songs.filter(s=>[s.title,s.artist,s.lyrics].some(v=>String(v||'').toLocaleLowerCase('tr').includes(q)));}if(state.view==='category')return getSorted(songsByCat(state.categoryId));if(state.view==='favorites')return getSorted(db.songs.filter(s=>s.favorite));return getSorted(db.songs);}
+function renderStage(){const s=db.songs.find(x=>x.id===state.stageSongId);if(!s)return;const cat=db.categories.find(c=>c.id===s.categoryId);document.getElementById('stageTitle').textContent=s.title;document.getElementById('stageSub').textContent=[s.artist,cat?.name].filter(Boolean).join(' · ');document.getElementById('stageMeta').innerHTML=`<div class="info-block bpm-block"><span class="info-label">BPM</span><span class="info-val">${esc(s.bpm||'—')}</span></div><div class="info-block"><span class="info-label">Ölçü</span><span class="info-val">${esc(s.measure||'—')}</span></div><div class="info-block"><span class="info-label">Ton</span><span class="info-val">${esc(s.key||'—')}</span></div>${styleBlocksHtml(s.styles||[])}`;document.getElementById('stageLyrics').textContent=s.lyrics||'Söz eklenmemiş.';}
+function nextStageSong(){const list=stageList();const i=list.findIndex(s=>s.id===state.stageSongId);if(!list.length)return;state.stageSongId=list[(i+1+list.length)%list.length].id;renderStage();}
+function prevStageSong(){const list=stageList();const i=list.findIndex(s=>s.id===state.stageSongId);if(!list.length)return;state.stageSongId=list[(i-1+list.length)%list.length].id;renderStage();}
+function changeStageScale(d){db.settings.stageScale=Math.max(.75,Math.min(1.9,(+db.settings.stageScale||1.15)+d));document.documentElement.style.setProperty('--stage-scale',db.settings.stageScale);saveData();}
+
+/* ── Boot ─────────────────────────────────────── */
+function boot(){
+  const logo=document.getElementById('logoIcon');if(logo)logo.innerHTML=LOGO_SVG;
+  document.getElementById('hambIcon').innerHTML=IC.menu;
+  document.getElementById('plusIcon1').innerHTML=IC.plus;
+  document.getElementById('plusIcon2').innerHTML=IC.plus;
+  document.getElementById('searchIcon').innerHTML=IC.search;
+  document.getElementById('clearSearchBtn').innerHTML=IC.x;
+  ['xIcon1','xIcon2','xIcon3','xIcon4'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=IC.x;});
+  document.getElementById('musicIcon').innerHTML=IC.music;
+  document.getElementById('gridIcon').innerHTML=IC.grid;
+  document.getElementById('tableIcon').innerHTML=IC.table;
+  document.getElementById('dataIcon').innerHTML=IC.data;
+  document.documentElement.style.setProperty('--list-scale',db.settings.listScale||1);
+  document.documentElement.style.setProperty('--stage-scale',db.settings.stageScale||1.15);
+  document.getElementById('searchInput').addEventListener('input',e=>{state.search=e.target.value;document.getElementById('clearSearchBtn').classList.toggle('hidden',!state.search);render();});
+  document.addEventListener('keydown',e=>{if(document.getElementById('stageOverlay').classList.contains('hidden'))return;if(e.key==='Escape')closeStage();if(e.key==='ArrowRight')nextStageSong();if(e.key==='ArrowLeft')prevStageSong();});
+  render();
+}
+boot();
+</script>
+</body>
+</html>
